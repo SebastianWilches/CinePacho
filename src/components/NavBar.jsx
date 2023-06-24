@@ -7,7 +7,7 @@ export default function NavBar() {
   return (
     <>
       <nav className='navBar'>
-        <Link to={''}><h1 className='navBar--link'>CinePacho</h1></Link>
+        <Link to={''}><h2 className='navBar--link'>CinePacho</h2></Link>
         <section className='navBar--options'>
           <Link to={''}><h2 className='navBar--link'>Inicio</h2></Link>
           <Link to={'cartelera'}><h2 className='navBar--link'>Cartelera</h2></Link>

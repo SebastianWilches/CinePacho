@@ -1,0 +1,47 @@
+body{
+    background-color: var(--background);
+}
+p{
+    text-align: justify;
+}
+h2{
+    font-size: 2rem;
+}
+
+.container{
+    width: min(80%, 110rem);
+    margin: 2rem auto;
+}
+
+.container>h2{
+    text-align: center;
+    margin-bottom: 5rem;
+}
+
+.container--FeaturedMovie{
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    gap: 1rem;
+    
+    place-content: center;
+}
+
+.imgFeaturedMovie{
+    background-image: url('../img/Movie.png');
+    width: 100%;
+}
+
+.container--star{
+    display: flex;
+    flex-direction: row;  
+    gap: 0.2rem;  
+    justify-content: center;
+}
+
+.imgStar{
+    height: 1rem;
+}
+
+.imgFeaturedMovie{
+    height: 30rem;
+}
