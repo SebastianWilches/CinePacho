@@ -1,38 +1,41 @@
-.App {
-  text-align: center;
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;600;700&family=Source+Sans+3:wght@300;400;600;700&display=swap');
+
+:root {
+  /* Colors */
+  --primary: #003E9A;
+  --secondary: #C22B2E;
+  --tertiary: #FEB907;
+  --background: #F2F2F2;
+  --white: #FFFFFF;
+
+  /* Fonts */
+  --titlesFont: 'Source Sans 3', sans-serif;
+  --textFont: 'Noto Sans', sans-serif;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body {
+  font-family: var(--textFont);
+  margin: 0;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--titlesFont);
+  text-transform: uppercase;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+h1 {
+  font-weight: 700;
 }
 
-.App-link {
-  color: #61dafb;
+h2 {
+  font-weight: 600;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+h3 {
+  font-weight: 400;
 }
