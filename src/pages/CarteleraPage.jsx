@@ -1,5 +1,6 @@
 import React from 'react'
 import Footer from '../components/Footer'
+import MovieCartelera from '../components/MovieCartelera'
 
 import './CarteleraPage.css'
 import img from '../img/MovieCartelera2.jpg'
@@ -11,50 +12,10 @@ export const CarteleraPage = () => {
       <article className='container'>
         <h2 className='title-container'>¡Encuentra los mejores estrenos aquí!</h2>
         <div className="container-movies">
-          <section className='item-movies'>
-            <img src={img} alt="Poster pelicula" className='imgMovie' />
-            <h2 className='title-movie'>JOKER</h2>
-            <div className='container--star'>
-              <img src={star} alt="Icono Estrella" className='imgStar' />
-              <img src={star} alt="Icono Estrella" className='imgStar' />
-              <img src={star} alt="Icono Estrella" className='imgStar' />
-              <img src={star} alt="Icono Estrella" className='imgStar' />
-              <img src={star} alt="Icono Estrella" className='imgStar' />
-            </div>
-          </section>
-          <section className='item-movies'>
-            <img src={img} alt="Poster pelicula" className='imgMovie' />
-            <h2 className='title-movie'>JOKER</h2>
-            <div className='container--star'>
-              <img src={star} alt="Icono Estrella" className='imgStar' />
-              <img src={star} alt="Icono Estrella" className='imgStar' />
-              <img src={star} alt="Icono Estrella" className='imgStar' />
-              <img src={star} alt="Icono Estrella" className='imgStar' />
-              <img src={star} alt="Icono Estrella" className='imgStar' />
-            </div>
-          </section>
-          <section className='item-movies'>
-            <img src={img} alt="Poster pelicula" className='imgMovie' />
-            <h2 className='title-movie'>JOKER</h2>
-            <div className='container--star'>
-              <img src={star} alt="Icono Estrella" className='imgStar' />
-              <img src={star} alt="Icono Estrella" className='imgStar' />
-              <img src={star} alt="Icono Estrella" className='imgStar' />
-              <img src={star} alt="Icono Estrella" className='imgStar' />
-              <img src={star} alt="Icono Estrella" className='imgStar' />
-            </div>
-          </section>
-          <section className='item-movies'>
-            <img src={img} alt="Poster pelicula" className='imgMovie' />
-            <h2 className='title-movie'>JOKER</h2>
-            <div className='container--star'>
-              <img src={star} alt="Icono Estrella" className='imgStar' />
-              <img src={star} alt="Icono Estrella" className='imgStar' />
-              <img src={star} alt="Icono Estrella" className='imgStar' />
-              <img src={star} alt="Icono Estrella" className='imgStar' />
-              <img src={star} alt="Icono Estrella" className='imgStar' />
-            </div>
-          </section>
+          <MovieCartelera></MovieCartelera>
+          <MovieCartelera></MovieCartelera>
+          <MovieCartelera></MovieCartelera>
+          <MovieCartelera></MovieCartelera>
         </div>
       </article>
 

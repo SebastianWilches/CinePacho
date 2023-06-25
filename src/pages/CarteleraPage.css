@@ -15,18 +15,3 @@
     text-align: center;
     margin-bottom: 5rem;
 }
-
-.item-movies {
-    display: grid;
-    place-content: center;
-}
-
-.imgMovie {
-    width: 20rem;
-    border-radius: 10px;
-}
-
-.title-movie {
-    margin: 0;
-    text-align: center;
-}
