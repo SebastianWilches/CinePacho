@@ -12,7 +12,7 @@ export const HomePage = () => {
     <>
       <Header></Header>
       <article className='container'>
-        <h2>¡Encuentra los mejores estrenos  aquí!</h2>
+        <h2 className='title-container'>¡Encuentra los mejores estrenos aquí!</h2>
         <section>
           <article className='container--FeaturedMovie'>
             <img src={img} alt="Poster pelicula destacada" className='imgFeaturedMovie'/>
