@@ -1,0 +1,67 @@
+:root {
+    --TextBG: #1E1E1E;
+    --Button: #FFF736;
+    --Text: #FDFEFF;
+}
+
+.CardPet {
+    width: 28rem;
+    height: 20rem;
+    background-color: aqua;
+    border-radius: 14px;
+
+    display: grid;
+    grid-template-rows: 4fr 2fr;
+    justify-self: center;
+
+    -webkit-box-shadow: 0px 10px 30px -12px rgba(0, 0, 0, 0.70);
+    -moz-box-shadow: 0px 10px 30px -12px rgba(0, 0, 0, 0.70);
+    box-shadow: 0px 10px 30px -12px rgba(0, 0, 0, 0.70);
+}
+
+/* Test */
+.CardImage {
+    background-color: rgb(142, 176, 240);
+    height: 13.5rem;
+    border-radius: 14px 14px 0px 0px;
+}
+
+.CardImage img{
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    border-radius: 14px 14px 0px 0px;
+}
+
+.CardInfo {
+    background-color: var(--TextBG);
+    height: 100%;
+    border-radius: 0px 0px 14px 14px;
+
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+}
+
+.CardTitle {
+    grid-column: 1/1;
+    grid-row: 1/1;
+
+    color: var(--Text);
+
+    padding: 1rem 0 0 1rem;
+}
+
+.CardBtn {
+    grid-column: 2/3;
+    grid-row: 2/3;
+    place-self: center;
+
+    width: 80%;
+    height: 80%;
+
+    border-radius: 10px;
+    text-transform: uppercase;
+    background-color: var(--Button);
+    text-decoration: underline;
+}

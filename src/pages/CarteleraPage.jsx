@@ -3,8 +3,6 @@ import Footer from '../components/Footer'
 import MovieCartelera from '../components/MovieCartelera'
 
 import './CarteleraPage.css'
-import img from '../img/MovieCartelera2.jpg'
-import star from '../img/Star.png'
 
 export const CarteleraPage = () => {
   return (
