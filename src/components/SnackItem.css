@@ -1,13 +1,13 @@
 :root {
     --TextBG: #1E1E1E;
-    --Button: #FFF736;
+    --Button: #C22B2E;
     --Text: #FDFEFF;
 }
 
-.CardPet {
+.CardSnack {
     width: 28rem;
     height: 20rem;
-    background-color: aqua;
+    background-color: var(--TextBG);
     border-radius: 14px;
 
     display: grid;
@@ -64,4 +64,5 @@
     text-transform: uppercase;
     background-color: var(--Button);
     text-decoration: underline;
+    color: var(--Text);
 }

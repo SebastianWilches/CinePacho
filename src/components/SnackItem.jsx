@@ -6,7 +6,7 @@ import './SnackItem.css'
 
 export default function SnackItem() {
   return (
-    <section className='CardPet'>
+    <section className='CardSnack'>
       <div className='CardImage'><img src={snack} alt='Snack item' /></div>
       <div className='CardInfo'>
         <h3 className='CardTitle'>Palomitas</h3>

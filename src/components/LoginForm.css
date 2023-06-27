@@ -1,0 +1,8 @@
+.container-login{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.button-submit{
+    grid-column: 1 / span 2;
+}
