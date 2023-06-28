@@ -6,7 +6,8 @@
 
 .CardSnack {
     width: 28rem;
-    height: 20rem;
+    /* height: 20rem; */
+    min-height: fit-content;
     background-color: var(--TextBG);
     border-radius: 14px;
 

@@ -1,9 +1,18 @@
+.div-contenedor-login{
+    width: 100vw;
+    min-height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .container-loginPage{
     width: min(60%, 110rem);
-    margin: 18vh auto;
-
+    /* margin: 18vh auto; */
+    /* height: fit-content; */
     display: flex;
-    flex-direction: row;    
+    flex-direction: row;   
+    position: relative; 
 }
 
 .link-register{
