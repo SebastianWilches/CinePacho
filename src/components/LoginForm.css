@@ -1,8 +1,20 @@
-.container-login{
+.container-loginForm{
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+
+    column-gap: 0.5rem;
 }
 
 .button-submit{
+    margin: 1rem 0;
     grid-column: 1 / span 2;
+
+    background-color: var(--secondary);
+    color: var(--white);
+    border: none;
+    /* font-size: 2rem; */
+    padding: 0.5rem;
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 1rem;
 }

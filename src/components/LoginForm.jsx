@@ -10,7 +10,7 @@ export default function LoginForm() {
 
     return (
         <>
-            <form className='container-login' onSubmit={handleSubmit((data) => { console.log(data) })}>
+            <form className='container-loginForm' onSubmit={handleSubmit((data) => { console.log(data) })}>
                 <label>Número de documento:</label>
                 <input
                     {...register('cedula')}

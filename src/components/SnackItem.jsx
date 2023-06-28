@@ -11,7 +11,7 @@ export default function SnackItem() {
       <div className='CardInfo'>
         <h3 className='CardTitle'>Palomitas</h3>
         
-        <button className='CardBtn'>Conóceme</button>
+        <button className='CardBtn'>Comprar</button>
         
       </div>
 

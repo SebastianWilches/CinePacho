@@ -1,3 +1,77 @@
+.container-loginPage{
+    width: min(60%, 110rem);
+    margin: 18vh auto;
+
+    display: flex;
+    flex-direction: row;
+
+    
+}
+
 .link-register{
+    display: inline-block;
+    position: relative;
+    color: var(--white);
+    font-size: large;
+}
+
+.link-register:after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: var(--white);
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+}
+
+.link-register:hover:after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+
+.titleLoginForm{
     text-align: center;
+    font-size: larger;
+}
+
+.imgLogin{
+    width: 100%;
+}
+
+@media (max-width: 1366px) {
+    .imgLogin{
+        width: 60%;
+    }
+}
+
+.header-loginPage{
+    border-radius: 50px 0 0 50px;
+    border: 0.1rem solid var(--black);
+    display: flex;
+    justify-content: center;
+}
+
+.body-loginPage{
+    flex-grow: 2;
+    border-radius: 0 50px 50px 0;
+
+    display: grid;
+    place-content: center;
+
+    background-color: var(--black);
+    border: 0.1rem solid var(--black);
+}
+
+@media (max-width: 1366px) {
+    .body-loginPage{
+        padding: 5rem;
+    }
+}
+
+.body-loginPage > *{
+    color: var(--white);
 }
