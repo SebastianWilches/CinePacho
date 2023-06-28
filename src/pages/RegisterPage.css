@@ -1,3 +1,26 @@
+
+
 .link-login{
-    text-align: center;
+    display: inline-block;
+    position: relative;
+    color: var(--white);
+    font-size: large;
+}
+
+.link-login:after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: var(--white);
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+}
+
+.link-login:hover:after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
 }

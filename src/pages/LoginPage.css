@@ -3,9 +3,7 @@
     margin: 18vh auto;
 
     display: flex;
-    flex-direction: row;
-
-    
+    flex-direction: row;    
 }
 
 .link-register{
