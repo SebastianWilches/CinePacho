@@ -7,9 +7,9 @@ import './SnacksPage.css'
 
 
 
- import palomitasImg from '../img/Palomitas.webp'
- import perroImg from '../img/Perro.webp'
- import gaseosaImg from '../img/Gaseosa.jpg'
+import palomitasImg from '../img/Palomitas.webp'
+import perroImg from '../img/Perro.webp'
+import gaseosaImg from '../img/Gaseosa.jpg'
 
 
 
