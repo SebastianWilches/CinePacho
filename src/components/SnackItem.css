@@ -11,8 +11,8 @@
     background-color: var(--TextBG);
     border-radius: 14px;
 
-    display: grid;
-    grid-template-rows: 4fr 2fr;
+    /* display: grid; */
+    /* grid-template-rows: 4fr 2fr; */
     justify-self: center;
 
     -webkit-box-shadow: 0px 10px 30px -12px rgba(0, 0, 0, 0.70);

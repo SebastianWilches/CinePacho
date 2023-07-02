@@ -1,15 +1,16 @@
 import React from 'react'
 
-import snack from '../img/Palomitas.webp'
+
 
 import './SnackItem.css'
+import palomitasImg from '../img/Palomitas.webp'
 
-export default function SnackItem({infoSnack: {img, title, precio}}) {
+export default function SnackItem({infoSnack: {nombresnack, precio}}) {
   return (
     <section className='CardSnack'>
-      <div className='CardImage'><img src={img} alt='Snack item' /></div>
+      <div className='CardImage'><img src={palomitasImg} alt='Snack item' /></div>
       <div className='CardInfo'>
-        <h3 className='CardTitle'>{title}</h3>
+        <h3 className='CardTitle'>{nombresnack}</h3>
         <p className='PrecioSnack'>{precio}</p>
         
         <button className='CardBtn'>Comprar</button>

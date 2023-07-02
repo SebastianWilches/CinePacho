@@ -4,11 +4,17 @@
 }
 
 .container-movies {
-    display: grid;
+    /* display: grid;
     grid-template-columns: repeat(3, 1fr);
     place-content: center;
 
-    row-gap: 8rem;
+    row-gap: 8rem; */
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
 }
 
 .container>.title-container {
