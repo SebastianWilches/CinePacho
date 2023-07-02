@@ -1,12 +1,20 @@
+import { useState } from "react"
 import { CineContext } from "./CineContext"
 
 export const CineProvider = ({ children }) => {
 
-    //TODO: Logica de la programación
+    //Estados globales
+    const [selectedMultiplex_ID, setSelectedMultiplex_ID] = useState();
+    const [listaMultiplex, setListaMultiplex] = useState([]);
+
+
+
     return (
         <CineContext.Provider value={
             {
-                test: 'testValue'
+                listaMultiplex,
+                setListaMultiplex,
+                setSelectedMultiplex_ID
             }
         }>
             {children}
