@@ -94,7 +94,10 @@ export const HomePage = () => {
         <Card>
           <Card.Header>Selecciona tu multiplex</Card.Header>
           <Card.Body>
-            <form className='container-loginForm' onSubmit={handleSubmit((data) => { setSelectedMultiplex_ID(data.selectedMultiplex_ID) })}>
+            <form className='container-loginForm' onSubmit={handleSubmit((data) => {
+              setSelectedMultiplex_ID(data.selectedMultiplex_ID)
+              setOpen(false);
+            })}>
               <label>Nombre multiplex: </label>
               <select {...register("selectedMultiplex_ID", { required: true })}>
                 {

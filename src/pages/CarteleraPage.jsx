@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from 'react'
+import { DotSpinner } from '@uiball/loaders'
 import Footer from '../components/Footer'
 import MovieCartelera from '../components/MovieCartelera'
 
 import './CarteleraPage.css'
 
-
 export const CarteleraPage = () => {
 
   const urlBase = 'http://localhost:3001/';
   const [movies, setMovies] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     GET_Movies();
@@ -19,8 +20,8 @@ export const CarteleraPage = () => {
     const response = await fetch(`${urlBase}listaPeliculas`);
     const { listaPeliculas } = await response.json();
 
-    console.log(listaPeliculas);
     setMovies(listaPeliculas);
+    setLoading(false);
   }
 
   return (
@@ -28,10 +29,18 @@ export const CarteleraPage = () => {
       <article className='container'>
         <h2 className='title-container'>¡Encuentra los mejores estrenos aquí!</h2>
         <div className="container-movies">
-          {!movies ? 'CARGANDO' :
-            movies.map((movie, index) => {
-              return <MovieCartelera infoPelicula={movie} key={index}/>
-            })}
+          {
+            loading ?
+              (<DotSpinner
+                size={40}
+                speed={0.9}
+                color="black"
+              />)
+              :
+              (movies.map((movie, index) => {
+                return <MovieCartelera infoPelicula={movie} key={index} />
+              }))
+          }
         </div>
       </article>
 
