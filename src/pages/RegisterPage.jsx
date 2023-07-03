@@ -8,6 +8,7 @@ import './RegisterPage.css'
 export const RegisterPage = () => {
   return (
     <>
+    <div className="div-contenedor-login">
       <section className='container-loginPage'>
         <aside className='header-loginPage'>
           <img src={perfil} alt="Imagen perfil login" className='imgLogin' />
@@ -18,7 +19,7 @@ export const RegisterPage = () => {
           <Link to={'/login'}><h3 className='link-login'>¿Ya tienes una cuenta?</h3></Link>
         </article>
       </section>
-      <div>RegisterPage</div>
+    </div>
     </>
   )
 }

@@ -1,0 +1,16 @@
+.container-pelicula{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    /* flex-wrap: wrap; */
+}
+
+.imgMoviePage{
+    border-radius: 10px;
+    width: 25rem;
+}
+
+.titleMoviePage{
+    font-size: 2.5rem;
+}

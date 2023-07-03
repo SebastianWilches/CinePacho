@@ -1,35 +1,98 @@
-import React from 'react'
+import React, { useState, useContext } from 'react'
+import { CineContext } from '../context/CineContext';
 import { useForm } from 'react-hook-form'
+import Swal from 'sweetalert2'
 
 import './LoginForm.css'
 
 export default function LoginForm() {
     //State del form
     const { register, handleSubmit } = useForm();
+    const [credenciales1, setCredenciales1] = useState([]);
+    const { setInfoCliente, setTokenCliente } = useContext(CineContext);
+    const urlBase = 'http://localhost:3001/';
 
+    const POST_validarCredenciales = async (credenciales) => {
+        const response = await fetch(`${urlBase}validarCredencialesSesion`, {
+            method: 'POST',
+            body: JSON.stringify(credenciales),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        const data = await response.json()
+    }
+
+    const POST_iniciarSesion = async (credenciales2) => {
+        const response = await fetch(`${urlBase}iniciarSesion`, {
+            method: 'POST',
+            body: JSON.stringify(credenciales2),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        const data = await response.json();
+
+        if (data.mensaje == 'No se ha podido iniciar sesion, ha ocurrido un error') {
+            return (Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Código incorrecto'
+            }))
+        }
+
+        if (data.mensaje == 'Se ha iniciado sesion correctamente') {
+            setInfoCliente(data.usuario);
+            setTokenCliente(data.token);
+            Swal.fire({
+                title: "¡Usuario logeado!",
+                icon: "success",
+            });
+        }
+    }
+
+    const validacionCodigo = async (credenciales) => {
+        Swal.fire({
+            title: "Ingresa el código para la verificación en dos pasos",
+            input: "number",
+            inputAttributes: {
+                autocapitalize: "off"
+            },
+            showCancelButton: true,
+            confirmButtonText: "Ingresar",
+            showLoaderOnConfirm: true,
+            preConfirm: (codigo) => {
+                let userValidado = {
+                    correo: credenciales.correo,
+                    codigo
+                };
+
+                POST_iniciarSesion(userValidado);
+            }
+        });
+    }
+    const handleLogin = async (user) => {
+        await setCredenciales1(user);
+        await POST_validarCredenciales(user);
+        await validacionCodigo(user);
+    }
 
     return (
         <>
-            <form className='container-loginForm' onSubmit={handleSubmit((data) => { console.log(data) })}>
-                <label>Número de documento:</label>
-                <input
-                    {...register('cedula')}
-                    placeholder='Número de documento'
-                    type='number'
-                    min={0}
-                    required>
-                </input>
+            <form className='container-loginForm' onSubmit={handleSubmit((data) => {
+                handleLogin(data);
+            })}>
 
                 <label>Correo electrónico:</label>
                 <input
-                    {...register('email')}
+                    {...register('correo')}
                     placeholder='Correo electrónico'
                     required>
                 </input>
 
                 <label>Contraseña:</label>
                 <input
-                    {...register('password')}
+                    {...register('contrasena')}
                     placeholder='Contraseña'
                     type='password'
                     required>
