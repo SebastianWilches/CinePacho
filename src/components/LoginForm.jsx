@@ -82,23 +82,28 @@ export default function LoginForm() {
             <form className='container-loginForm' onSubmit={handleSubmit((data) => {
                 handleLogin(data);
             })}>
+                <div className='div-data-login'>
+                    <div>
+                        <label>Correo electrónico:</label>
+                        <input
+                            {...register('correo')}
+                            // placeholder='Correo electrónico'
+                            required>
+                        </input>
+                    </div>
 
-                <label>Correo electrónico:</label>
-                <input
-                    {...register('correo')}
-                    placeholder='Correo electrónico'
-                    required>
-                </input>
+                    <div>
+                        <label>Contraseña:</label>
+                        <input
+                            {...register('contrasena')}
+                            // placeholder='Contraseña'
+                            type='password'
+                            required>
+                        </input>
+                    </div>
+                </div>
 
-                <label>Contraseña:</label>
-                <input
-                    {...register('contrasena')}
-                    placeholder='Contraseña'
-                    type='password'
-                    required>
-                </input>
-
-                <input className='button-submit' type="submit" />
+                <input className='button-submit btn-sub-login' type="submit" />
             </form>
         </>
     )

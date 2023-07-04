@@ -14,7 +14,7 @@ export const LoginPage = () => {
           <img src={perfil} alt="Imagen perfil login" className='imgLogin' />
         </aside>
         <article className='body-loginPage'>
-          <p className='titleLoginForm'>UNETE A CINEPACHO</p>
+          <p className='titleLoginForm'>ÚNETE A CINEPACHO</p>
           <LoginForm />
           <Link to={'/register'}><h3 className='link-register'>¿No tienes cuenta aún?</h3></Link>
         </article>

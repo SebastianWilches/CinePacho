@@ -43,6 +43,7 @@
 .titleLoginForm{
     text-align: center;
     font-size: larger;
+    width: 80%;
 }
 
 .imgLogin{
@@ -63,19 +64,20 @@
 }
 
 .body-loginPage{
+    display: flex;
+    flex-direction: column;
     flex-grow: 2;
+    gap: 10px;
     border-radius: 0 50px 50px 0;
-
-    display: grid;
-    place-content: center;
-
+    align-items: center;
+    justify-content: center;
     background-color: var(--black);
     border: 0.1rem solid var(--black);
 }
 
 @media (max-width: 1366px) {
     .body-loginPage{
-        padding: 5rem;
+        /* padding: 5rem; */
     }
 }
 

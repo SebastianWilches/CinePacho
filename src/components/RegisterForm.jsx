@@ -36,51 +36,60 @@ export default function RegisterForm() {
 
     return (
         <>
-            <form className='container-register' onSubmit={handleSubmit((data) => {
+            <form className='container-registerForm' onSubmit={handleSubmit((data) => {
                 POST_RegistrarSesionCliente(data);
             })}>
-                <label>Nombres y apellidos:</label>
-                <input
-                    {...register('nombre')}
-                    placeholder='Nombres'
-                    type='text'
-                    required>
-                </input>
+                <div className="div-data-register">
+                    <div>
+                        <label>Nombres y apellidos:</label>
+                        <input
+                            {...register('nombre')}
+                            // placeholder='Nombres'
+                            type='text'
+                            required>
+                        </input>
+                    </div>
+                    <div>
+                        <label>Número de documento:</label>
+                        <input
+                            {...register('cedula')}
+                            // placeholder='Número de documento'
+                            type='number'
+                            min={0}
+                            required>
+                        </input>
+                    </div>
+                    <div>
+                        <label>Correo electrónico:</label>
+                        <input
+                            {...register('correo')}
+                            // placeholder='Correo electrónico'
+                            type='email'
+                            required>
+                        </input>
+                    </div>
+                    <div>
+                        <label>Teléfono:</label>
+                        <input {...register('telefono')}
+                            // placeholder='Teléfono'
+                            type='number'
+                            min={0}
+                            required>
+                        </input>
+                    </div>
+                    <div>
+                        <label>Contraseña:</label>
+                        <input
+                            {...register('contrasena')}
+                            // placeholder='Contraseña'
+                            type='password'
+                            required>
+                        </input>
+                    </div>
 
-                <label>Número de documento:</label>
-                <input
-                    {...register('cedula')}
-                    placeholder='Número de documento'
-                    type='number'
-                    min={0}
-                    required>
-                </input>
+                </div>
 
-                <label>Correo electrónico:</label>
-                <input
-                    {...register('correo')}
-                    placeholder='Correo electrónico'
-                    type='email'
-                    required>
-                </input>
-
-                <label>Teléfono:</label>
-                <input {...register('telefono')}
-                    placeholder='Teléfono'
-                    type='number'
-                    min={0}
-                    required>
-                </input>
-
-                <label>Contraseña:</label>
-                <input
-                    {...register('contrasena')}
-                    placeholder='Contraseña'
-                    type='password'
-                    required>
-                </input>
-
-                <input className='button-submit' type="submit" />
+                <input className='button-submit btn-sub-register' type="submit" />
             </form>
         </>
     )

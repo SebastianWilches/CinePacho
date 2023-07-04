@@ -1,8 +1,42 @@
-.container-register{
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
+.container-registerForm{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 80%;
 }
 
 .button-submit{
     grid-column: 1 / span 2;
+}
+
+
+.div-data-register{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    width: 100%;
+    gap: 16px;
+}
+
+.div-data-register>div{
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.div-data-register>div>input{
+    appearance: none;
+    border: none;
+    background: none;
+    /* padding: ; */
+    border-bottom: 1px solid white;
+    width: 100%;
+}
+
+.btn-sub-register{
+    width: 100%;
 }
