@@ -6,12 +6,12 @@ import imgJoker from '../img/MovieCartelera2.jpg'
 
 import star from '../img/Star.png'
 
-export default function MovieCartelera({ infoPelicula: { titulo, puntajePromedio, pelicula_id } }) {
+export default function MovieCartelera({ infoPelicula: { titulo, puntajePromedio, pelicula_id, direccionFoto } }) {
     return (
         <>
             <Link to={'../movie/' + pelicula_id} relative='path'>
                 <section className='item-movies'>
-                    <img src={imgJoker} alt="Poster pelicula" className='imgMovie' />
+                    <img src={direccionFoto} alt="Poster pelicula" className='imgMovie' />
                     <h2 className='title-movie'>{titulo}</h2>
                     <div className='container--star'>
                         <p className='text-rating'>{puntajePromedio} / 5

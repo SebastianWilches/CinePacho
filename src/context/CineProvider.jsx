@@ -21,7 +21,8 @@ export const CineProvider = ({ children }) => {
                 openShoppingCart,
                 setOpenShoppingCart,
                 setInfoCliente,
-                setTokenCliente
+                setTokenCliente,
+                selectedMultiplex_ID
             }
         }>
             {children}

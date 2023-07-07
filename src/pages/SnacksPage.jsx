@@ -1,18 +1,20 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { DotSpinner } from '@uiball/loaders'
 import SnackItem from '../components/SnackItem'
 import Footer from '../components/Footer'
 
 import './SnacksPage.css'
+import { CineContext } from '../context/CineContext'
 
 export const SnacksPage = () => {
 
-  const urlBase = 'http://localhost:3001/';
+  const urlBase = 'https://cinepachoapi.azurewebsites.net/';
   const [snacks, setSnacks] = useState([]);
   const [loading, setLoading] = useState(true);
+  const { selectedMultiplex_ID } = useContext(CineContext);
 
   useEffect(() => {
-    GET_Snacks();
+    GET_Snacks(selectedMultiplex_ID);
   }, [])
 
   const GET_Snacks = async (idMultiplex = 1) => {

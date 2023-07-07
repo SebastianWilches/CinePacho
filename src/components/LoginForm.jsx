@@ -6,11 +6,11 @@ import Swal from 'sweetalert2'
 import './LoginForm.css'
 
 export default function LoginForm() {
-    //State del form
-    const { register, handleSubmit } = useForm();
+    
+    const { register, handleSubmit } = useForm(); //State del form
     const [credenciales1, setCredenciales1] = useState([]);
     const { setInfoCliente, setTokenCliente } = useContext(CineContext);
-    const urlBase = 'http://localhost:3001/';
+    const urlBase = 'https://cinepachoapi.azurewebsites.net/';
 
     const POST_validarCredenciales = async (credenciales) => {
         const response = await fetch(`${urlBase}validarCredencialesSesion`, {

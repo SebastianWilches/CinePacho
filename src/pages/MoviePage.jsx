@@ -1,16 +1,19 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
-import { DotSpinner } from '@uiball/loaders'
+import { DotSpinner } from '@uiball/loaders';
+import { useForm } from 'react-hook-form';
 
-import imgJoker from '../img/MovieCartelera2.jpg'
 import './MoviePage.css'
 import Footer from '../components/Footer';
+import SillaForm from '../components/SillaForm';
 
 export const MoviePage = () => {
     const { id: idPelicula } = useParams();
-    const urlBase = 'http://localhost:3001/';
+    const urlBase = 'https://cinepachoapi.azurewebsites.net/';
     const [movies, setMovies] = useState([]);
     const [loading, setLoading] = useState(true);
+
+    
 
 
     useEffect(() => {
@@ -23,11 +26,13 @@ export const MoviePage = () => {
         const { listaPeliculas } = await response.json();
 
         let filterPeliculas = listaPeliculas.filter(item => item.pelicula_id == idPelicula);
-        console.log(filterPeliculas);
+        // console.log(filterPeliculas);
 
         setMovies(filterPeliculas);
         setLoading(false);
     }
+
+    
 
 
     return (
@@ -42,7 +47,7 @@ export const MoviePage = () => {
                         />) :
                         (
                             <>
-                                <img src={imgJoker} alt="Poster película" className='imgMoviePage' />
+                                <img src={movies[0].direccionFoto} alt="Poster película" className='imgMoviePage' />
                                 <section>
                                     <h1 className='titleMoviePage'>{movies[0].titulo}</h1>
                                     <h3>SINOPSIS</h3>
@@ -53,6 +58,9 @@ export const MoviePage = () => {
                                     <h4>Duración:{movies[0].duracion} minutos</h4>
                                     <h4>Calificación:{movies[0].puntajePromedio}</h4>
 
+                                    <SillaForm idPelicula={idPelicula}/>
+
+                                    
                                 </section>
                             </>
                         )
