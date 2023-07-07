@@ -7,13 +7,19 @@ import Silla from './Silla';
 import './SillaForm.css'
 
 export default function SillaForm({ idPelicula }) {
-    const { register, handleSubmit } = useForm(); //State del form
+    //Constantes y utils
     const urlBase = 'https://cinepachoapi.azurewebsites.net/';
-    const [listFunciones, setListFunciones] = useState([]);
     const [loading, setLoading] = useState(true);
     const [loading2, setLoading2] = useState(true);
+
+    //Form
+    const { register, handleSubmit } = useForm(); //State del form
+    const [listFunciones, setListFunciones] = useState([]);
+    const [listSillasDisponibles, setListSillasDisponibles] = useState([]); //Mapeo completo
+    const [listSillasSeleccionadas, setListSillasSeleccionadas] = useState([]);
+
+    //Contexto
     const { selectedMultiplex_ID } = useContext(CineContext);
-    const [listSillasDisponibles, setListSillasDisponibles] = useState([]);
 
 
 
@@ -81,17 +87,24 @@ export default function SillaForm({ idPelicula }) {
             }
             {
                 loading2 ? (<></>) : (
+                    <>
+                        <p>Entradas seleccionadas:
+                            {
+                                listSillasSeleccionadas.map(silla=>{
+                                    return (silla.idSilla+', ')
+                                })
+                            }
+                        </p>
 
+                        <div className='container-sillas'>
 
-                    <div className='container-sillas'>
-
-                        {listSillasDisponibles.map((silla, index) => {
-                            return (
-                                <Silla key={index}></Silla>
-                            )
-                        })}
-                    </div>
-
+                            {listSillasDisponibles.map((silla, index) => {
+                                return (
+                                    <Silla key={index} infoSilla={silla} numSilla={index} setListSillasSeleccionadas={setListSillasSeleccionadas} listSillasSeleccionadas={listSillasSeleccionadas}></Silla>
+                                )
+                            })}
+                        </div>
+                    </>
                 )
             }
         </>

@@ -1,10 +1,19 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './Silla.css'
 
-export default function Silla() {
-  return (
-    <div className='btn-silla'>
+export default function Silla({infoSilla, numSilla, setListSillasSeleccionadas, listSillasSeleccionadas}) {
 
-    </div>
+
+  const reservaSilla = () => {
+    setListSillasSeleccionadas(listSillasSeleccionadas => listSillasSeleccionadas.concat(infoSilla));
+    console.log(listSillasSeleccionadas);
+
+  }
+
+
+  return (
+    <button className="btn-silla" onClick={reservaSilla}>
+      {infoSilla.idSilla}
+    </button>
   )
 }
