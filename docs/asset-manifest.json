@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.css": "/CinePacho/static/css/main.30876085.css",
+    "main.js": "/CinePacho/static/js/main.129d3a42.js",
+    "static/media/Movie.png": "/CinePacho/static/media/Movie.a35ecf966ebaaab4a882.png",
+    "static/media/Palomitas.webp": "/CinePacho/static/media/Palomitas.ed3455178cdf8aca438e.webp",
+    "static/media/MovieCartelera2.jpg": "/CinePacho/static/media/MovieCartelera2.ccf0f5c336154a5407fd.jpg",
+    "static/media/headerLandingPage.jpg": "/CinePacho/static/media/headerLandingPage.cf53ec2d28ec3bd6d7e4.jpg",
+    "static/media/Perfil.png": "/CinePacho/static/media/Perfil.1c3e77a75e6e43cd2014.png",
+    "static/media/Star.png": "/CinePacho/static/media/Star.f953161acce2e465c496.png",
+    "index.html": "/CinePacho/index.html",
+    "main.30876085.css.map": "/CinePacho/static/css/main.30876085.css.map",
+    "main.129d3a42.js.map": "/CinePacho/static/js/main.129d3a42.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.30876085.css",
+    "static/js/main.129d3a42.js"
+  ]
+}
