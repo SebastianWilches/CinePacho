@@ -21,6 +21,7 @@ export default function RegisterForm() {
             const data = await response.json()
             Swal.fire({
                 title: "¡Usuario registrado!",
+                text: 'Se le ha enviado una confirmación por medio de correo electrónico',
                 icon: "success",
             });
         } catch (error) {

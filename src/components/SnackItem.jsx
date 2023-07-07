@@ -11,7 +11,7 @@ export default function SnackItem({infoSnack: {nombresnack, precio}}) {
       <div className='CardImage'><img src={palomitasImg} alt='Snack item' /></div>
       <div className='CardInfo'>
         <h3 className='CardTitle'>{nombresnack}</h3>
-        <p className='PrecioSnack'>{precio}</p>
+        <p className='PrecioSnack'>${precio}</p>
         
         <button className='CardBtn'>Comprar</button>
         
