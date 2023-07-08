@@ -92,13 +92,12 @@ export const HomePage = () => {
 
       <Modal closeOnEscape={false} overlayCloseOnClick="false" position="center" size="md" open={open} onClose={() => setOpen(false)}>
         <Card>
-          <Card.Header>Selecciona tu multiplex</Card.Header>
+          <Card.Header><b>Selecciona tu multiplex</b></Card.Header>
           <Card.Body>
-            <form className='container-loginForm' onSubmit={handleSubmit((data) => {
+            <form className='container-selectMultiplex' onSubmit={handleSubmit((data) => {
               setSelectedMultiplex_ID(data.selectedMultiplex_ID)
               setOpen(false);
             })}>
-              <label>Nombre multiplex: </label>
               <select {...register("selectedMultiplex_ID", { required: true })}>
                 {
                   listaMultiplex.map((multi, index) => {

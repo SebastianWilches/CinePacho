@@ -6,6 +6,7 @@ import { useForm } from 'react-hook-form';
 import './MoviePage.css'
 import Footer from '../components/Footer';
 import SillaForm from '../components/SillaForm';
+import { FaBook, FaFaceLaugh, FaRegClock, FaRegStar } from 'react-icons/fa6';
 
 export const MoviePage = () => {
     const { id: idPelicula } = useParams();
@@ -53,10 +54,10 @@ export const MoviePage = () => {
                                     <h3>SINOPSIS</h3>
                                     <p>{movies[0].descripcion} Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sit quaerat adipisci, incidunt sint soluta ipsa eligendi fuga quibusdam error voluptatum nostrum deserunt? Nobis veniam optio quibusdam obcaecati aut laborum inventore.</p>
                                     <br></br>
-                                    <h4>Género:{movies[0].genero}</h4>
-                                    <h4>Clasificación: +{movies[0].clasificacionedad} años</h4>
-                                    <h4>Duración:{movies[0].duracion} minutos</h4>
-                                    <h4>Calificación:{movies[0].puntajePromedio}</h4>
+                                    <h4 className='infoMovie'><FaBook className='iconMovie'/><b>Género:</b>{movies[0].genero}</h4>
+                                    <h4 className='infoMovie'><FaFaceLaugh className='iconMovie'/><b>Clasificación:</b> +{movies[0].clasificacionedad} años</h4>
+                                    <h4 className='infoMovie'><FaRegClock className='iconMovie'/><b>Duración:</b>{movies[0].duracion} minutos</h4>
+                                    <h4 className='infoMovie'><FaRegStar className='iconMovie'/><b>Calificación:</b>{movies[0].puntajePromedio}</h4>
 
                                     <SillaForm idPelicula={idPelicula}/>
 

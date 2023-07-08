@@ -14,13 +14,8 @@ export default function MovieCartelera({ infoPelicula: { titulo, puntajePromedio
                     <img src={direccionFoto} alt="Poster pelicula" className='imgMovie' />
                     <h2 className='title-movie'>{titulo}</h2>
                     <div className='container--star'>
-                        <p className='text-rating'>{puntajePromedio} / 5
-                            <img src={star} alt="Icono Estrella" className='imgStar' />
-                        </p>
-                        {/* <img src={star} alt="Icono Estrella" className='imgStar' />
-                    <img src={star} alt="Icono Estrella" className='imgStar' />
-                    <img src={star} alt="Icono Estrella" className='imgStar' />
-                    <img src={star} alt="Icono Estrella" className='imgStar' /> */}
+                        <p className='text-rating'>{puntajePromedio} / 5</p>
+                            <img src={star} alt="Icono Estrella" className='imgStarMovie' />
                     </div>
                 </section>
             </Link>

@@ -12,7 +12,7 @@ export default function Silla({infoSilla, numSilla, setListSillasSeleccionadas, 
 
 
   return (
-    <button className="btn-silla" onClick={reservaSilla}>
+    <button className={`btn-silla ${infoSilla.disponible}`} onClick={reservaSilla}>
       {infoSilla.idSilla}
     </button>
   )

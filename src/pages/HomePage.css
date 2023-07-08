@@ -45,3 +45,8 @@ h2{
 .imgFeaturedMovie{
     height: 30rem;
 }
+
+.container-selectMultiplex{
+    display: flex;
+    flex-direction: column;
+}

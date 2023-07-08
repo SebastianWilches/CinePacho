@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form';
 import { DotSpinner } from '@uiball/loaders';
 import { CineContext } from '../context/CineContext';
+import { FaCircleCheck } from "react-icons/fa6";
 import Silla from './Silla';
 
 import './SillaForm.css'
@@ -19,7 +20,7 @@ export default function SillaForm({ idPelicula }) {
     const [listSillasSeleccionadas, setListSillasSeleccionadas] = useState([]);
 
     //Contexto
-    const { selectedMultiplex_ID } = useContext(CineContext);
+    const { selectedMultiplex_ID, infoCliente, tokenCliente, setListaCompraID, listaCompraID } = useContext(CineContext);
 
 
 
@@ -45,8 +46,61 @@ export default function SillaForm({ idPelicula }) {
             }
         })
         const { listaSillasDisponibles } = await response.json()
+        console.log("configSillasDisponibles", configFuncion);
         console.log(listaSillasDisponibles);
         setListSillasDisponibles(listaSillasDisponibles);
+    }
+
+    const POST_CrearCompraCliente = async (object, token) => {
+        const response = await fetch(`${urlBase}crearCompraCliente`, {
+            method: 'POST',
+            body: JSON.stringify(object),
+            headers: {
+                'Content-Type': 'application/json',
+                'x-access-token': token
+            }
+        })
+        const { idCompra } = await response.json()
+
+        let factura = {
+            idCompra,
+            descripcion: "Tickets de película",
+            listSillasSeleccionadas
+        }
+
+        setListaCompraID(listaCompraID => listaCompraID.concat(factura))
+
+        return idCompra;
+    }
+
+    const POST_EnviarSillas = async (object) => {
+        const response = await fetch(`${urlBase}seleccionarSillasCompra`, {
+            method: 'POST',
+            body: JSON.stringify(object),
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        })
+        const data = await response.json()
+        console.log(data);
+    }
+
+    const btnAgregarCarrito = async () => {
+        let crearCompra = {
+            idCliente: infoCliente.cliente_id,
+            correo: infoCliente.correo
+        }
+        const idCompra = await POST_CrearCompraCliente(crearCompra, tokenCliente);
+
+        let objectEnviarSillas = {
+            idCompra,
+            sillasSeleccionadas: listSillasSeleccionadas
+        }
+        console.log(objectEnviarSillas);
+
+        await POST_EnviarSillas(objectEnviarSillas);
+
+
     }
 
     return (
@@ -87,15 +141,8 @@ export default function SillaForm({ idPelicula }) {
             }
             {
                 loading2 ? (<></>) : (
-                    <>
-                        <p>Entradas seleccionadas:
-                            {
-                                listSillasSeleccionadas.map(silla=>{
-                                    return (silla.idSilla+', ')
-                                })
-                            }
-                        </p>
-
+                    <section className='container-comprar'>
+                        <hr />
                         <div className='container-sillas'>
 
                             {listSillasDisponibles.map((silla, index) => {
@@ -104,7 +151,22 @@ export default function SillaForm({ idPelicula }) {
                                 )
                             })}
                         </div>
-                    </>
+
+                        <article>
+                            <p><b>Entradas seleccionadas:</b>
+                                {
+                                    listSillasSeleccionadas.map(silla => {
+                                        return (silla.idSilla + ', ')
+                                    })
+                                }
+                            </p>
+                            <p><b>Precio: </b>
+                            {`$${listSillasSeleccionadas.length*100}`}
+                            </p>
+                            <button className='btn-carrito' onClick={btnAgregarCarrito}>Agregar al carrito <FaCircleCheck className='icon-carrito'/></button>
+
+                        </article>
+                    </section>
                 )
             }
         </>
