@@ -9,13 +9,13 @@ const CrearFuncion = () => {
   let listaPeliculasURL = "http://localhost:3001/listaPeliculas";
   let crearFuncionURL = "http://localhost:3001/crearFuncion";
 
-  const { selectedMultiplex_ID } = useContext(CineContext);
+  const { infoCliente } = useContext(CineContext);
 
   const [datosFuncion, setDatosFuncion] = useState({
     idSala: null,
     idPelicula: null,
     horario: null,
-    idMultiplex: selectedMultiplex_ID || "2",
+    idMultiplex: infoCliente.idMultiplex,
   });
   const [fechaHora, setfechaHora] = useState(null);
 

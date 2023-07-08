@@ -1,5 +1,5 @@
-import React from "react";
-import { Link, Routes, Route, Navigate } from "react-router-dom";
+import React, { useContext } from "react";
+import { Routes, Route, BrowserRouter } from "react-router-dom";
 import NavBar from "./components/NavBar";
 import {
   HomePage,
@@ -10,25 +10,39 @@ import {
 } from "./pages";
 import { MoviePage } from "./pages/MoviePage";
 import CrearConsumible from "./components/EmpleadoComponents/containers/CrearConsumible";
+import { CineContext } from "./context/CineContext";
+import RutasProtegidaAdmin from "./security/RutasProtegidasAdmin";
 
 export default function AppRouter() {
+  const { infoCliente, tokenCliente, auth } = useContext(CineContext);
+
+  // {/* <Link to="/sesionEmpleado">Ir a sesion empleado</Link> */}
   return (
     <>
-      <Link to='/sesionEmpleado' >Ir a sesion empleado</Link>
-      <Routes>
-        <Route path="/" element={<NavBar />}>
-          <Route index element={<HomePage />} />
-          <Route path="cartelera" element={<CarteleraPage />} />
-          <Route path="movie/:id" element={<MoviePage />} />
-          <Route path="snacks" element={<SnacksPage />} />
-          <Route path="login" element={<LoginPage />} />
-          <Route path="register" element={<RegisterPage />} />
-        </Route>
-        <Route>
-          <Route path="sesionEmpleado" element={<CrearConsumible />} />
-        </Route>
-        {/* <Route path='*' element={<Navigate to='/'/>}/> */}
-      </Routes>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<NavBar />}>
+            <Route index element={<HomePage />} />
+            <Route path="cartelera" element={<CarteleraPage />} />
+            <Route path="movie/:id" element={<MoviePage />} />
+            <Route path="snacks" element={<SnacksPage />} />
+            <Route path="login" element={<LoginPage />} />
+            <Route path="register" element={<RegisterPage />} />
+          </Route>
+
+          <Route
+            element={
+              <RutasProtegidaAdmin
+                autenticado={
+                  auth && tokenCliente && infoCliente.nombrerol === "admin"
+                }
+              />
+            }
+          >
+            <Route path="/sesionEmpleado" element={<CrearConsumible />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
     </>
   );
 }

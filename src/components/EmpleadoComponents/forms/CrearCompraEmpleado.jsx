@@ -3,16 +3,17 @@ import { CineContext } from "../../../context/CineContext";
 import ListaSillas from "../containers/ListaSillas";
 import axios from "axios";
 import ListaSnacksEmpleado from "../containers/ListaSnacksEmpleado";
+import { Navigate } from "react-router-dom";
 
-const CrearCompraEmpleado = () => {
-  const { selectedMultiplex_ID } = useContext(CineContext);
+const CrearCompraEmpleado = ({ accion }) => {
+  const { infoCliente } = useContext(CineContext);
 
   let token =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRvIjoiamVhc3NvbnN1YXJlekBvdXRsb29rLmVzIiwiaWF0IjoxNjg4Nzg0MzcxLCJleHAiOjE3MTk4ODgzNzF9.y3ClFI2WkA0BounoZZAx-heMtfuic_JbioQN-XJ47Jg";
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRvIjoiamVhc3NvbnN1YXJlekBvdXRsb29rLmVzIiwiaWF0IjoxNjg4ODMxODMwLCJleHAiOjE3MTk5MzU4MzB9.jpFCpAwQ4knD72IsrcbVLdqy6vv1seZtoSuGft0ZleM";
 
   const [datosCompra, setDatosCompra] = useState({
-    idMultiplex: selectedMultiplex_ID || "2", //ACA IRA EL MULTIPLEX QUE TIENE ASISNADO EL EMPLEADO
-    idEmpleado: "2", //ACA IRA EL ID DEL EMPLEADO EXTRAIDO DEL CONTEXTO
+    idMultiplex: infoCliente.idMultiplex, //ACA IRA EL MULTIPLEX QUE TIENE ASISNADO EL EMPLEADO
+    idEmpleado: infoCliente.empleado_id, //ACA IRA EL ID DEL EMPLEADO EXTRAIDO DEL CONTEXTO
     idCompra: null,
     cedulaCliente: null, //ACA IRA EL CC DEL CLIENTE INGRESADA EN EL FORM
     sillasSeleccionadas: [],
@@ -62,15 +63,10 @@ const CrearCompraEmpleado = () => {
             ...datosCompra,
             idCompra: response.data.idCompra,
           });
-
-          if (
-            agregarSillasACompra(response.data.idCompra) &&
-            agregarSnacksACompra(response.data.idCompra)
-          ) {
-            alert("Se creo con exito la compra");
-          } else {
-            console.log("no se agrego sillas");
-          }
+          agregarSillasACompra(response.data.idCompra);
+          agregarSnacksACompra(response.data.idCompra);
+          alert("Se creo con exito la compra");
+          // accion(null);
         }
       })
       .catch((error) => {
@@ -84,16 +80,55 @@ const CrearCompraEmpleado = () => {
       sillasSeleccionadas: datosCompra.sillasSeleccionadas,
       idMultiplex: parseInt(datosCompra.idMultiplex),
     };
+    let enviarSillasCompraURL = "http://localhost:3001/seleccionarSillasCompra";
+    axios
+      .post(enviarSillasCompraURL, {
+        idCompra,
+        sillasSeleccionadas,
+        idMultiplex,
+      })
+      .then((response) => {
+        // Manejar la respuesta del servidor
+        console.log(response.data);
+        return true;
+        // setListaSillasFuncion(response.data.listaSillasDisponibles);
+      })
+      .catch((error) => {
+        // Manejar errores
+        console.log(error);
+        return false;
+      });
 
     console.log(sillasSeleccionadas, idCompra, idMultiplex);
-    return true;
+
+    // return true;
   };
 
-  const agregarSnacksACompra = (idCompra) => {
+  const agregarSnacksACompra = async (idCompra) => {
     const idMultiplex = parseInt(datosCompra.idMultiplex);
     const arrSnacks = datosCompra.snackSeleccionados;
     console.log(idMultiplex, arrSnacks, idCompra);
-    return true;
+    let agregarSnackCompraURL = "http://localhost:3001/agregarSnackCompra";
+    for (let i = 0; i < arrSnacks.length; i++) {
+      await axios
+        .post(agregarSnackCompraURL, {
+          idSnack: arrSnacks[i].idSnack,
+          idCompra,
+          cantidad: arrSnacks[i].cantidad,
+          idMultiplex,
+        })
+        .then((response) => {
+          // Manejar la respuesta del servidor
+          console.log(response.data);
+          return true;
+          // setListaSillasFuncion(response.data.listaSillasDisponibles);
+        })
+        .catch((error) => {
+          // Manejar errores
+          console.log(error);
+          return false;
+        });
+    }
   };
 
   useEffect(() => {
@@ -212,6 +247,29 @@ const CrearCompraEmpleado = () => {
   //   console.log(datosCompra);
   // }, [datosCompra]);
 
+  const handleCancelarCompra = () => {
+    console.log(datosCompra.idCompra);
+    let cancelaCompraURL = "http://localhost:3001/cancelarCompra";
+    axios
+      .post(cancelaCompraURL, {
+        idCompra: datosCompra.idCompra,
+        idMultiplex: datosCompra.idMultiplex,
+      })
+      .then((response) => {
+        // Manejar la respuesta del servidor
+        console.log(response.data);
+        // setListaSillasFuncion(response.data.listaSillasDisponibles);
+      })
+      .catch((error) => {
+        // Manejar errores
+        console.log(error);
+      });
+  };
+
+  const handlePagarCompra = () => {
+    console.log(datosCompra.idCompra);
+  };
+
   return (
     <div className="empleado-div-control">
       <h2>Crear Compra</h2>
@@ -286,10 +344,26 @@ const CrearCompraEmpleado = () => {
           />
         </div>
 
-        <div className="funcion-form-div">
-          <button className="button-submit empleado-btn-form" type="submit">
+        <div className="funcion-form-div empleado-buttons-compra">
+          <button
+            className="button-submit empleado-btn-form btn-compra-empleado-crear"
+            type="submit"
+          >
             Crear Compra
           </button>
+
+          <span
+            className="button-submit empleado-btn-form btn-compra-empleado-pagar"
+            onClick={handlePagarCompra}
+          >
+            Pagar Compra
+          </span>
+          <span
+            className="button-submit empleado-btn-form btn-compra-empleado-cancelar"
+            onClick={handleCancelarCompra}
+          >
+            Cancelar Compra
+          </span>
         </div>
       </form>
     </div>

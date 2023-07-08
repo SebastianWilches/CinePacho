@@ -3,10 +3,10 @@ import { CineContext } from "../../../context/CineContext";
 import axios from "axios";
 
 const CrearSanck = () => {
-  const { selectedMultiplex_ID } = useContext(CineContext);
+  const { infoCliente } = useContext(CineContext);
 
   const [datosSnack, setDatosSnack] = useState({
-    idMultiplex: selectedMultiplex_ID || "2",
+    idMultiplex: infoCliente.idMultiplex,
     nombreSnack: null,
     precio: null,
     cantidad: null,

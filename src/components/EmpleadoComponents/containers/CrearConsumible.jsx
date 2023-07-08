@@ -17,7 +17,7 @@ const CrearConsumible = () => {
       {accion === null || accion === "btnDatosEmpleado" ? (
         <DatosEmpleado />
       ) : accion === "btnCreaCompra" ? (
-        <CrearCompraEmpleado />
+        <CrearCompraEmpleado accion={setAccion}/>
       ) : accion === "btnCreaPelicula" ? (
         <CrearPeliculas />
       ) : accion === "btnCreaFuncion" ? (

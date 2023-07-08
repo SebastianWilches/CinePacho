@@ -33,7 +33,7 @@ const Silla = ({ dataSilla, agregarSilla, eliminarSilla }) => {
       {dataSilla.disponible === "ocupada" && (
         <TbArmchairOff className="empleado-icon-silla empleado-silla-ocupada" />
       )}
-      <span>{dataSilla.Silla_silla_id}</span>
+      <span>{dataSilla.idSilla}</span>
     </div>
   );
 };

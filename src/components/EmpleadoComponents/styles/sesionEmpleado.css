@@ -147,3 +147,21 @@
     margin: 0;
 }
 
+.empleado-buttons-compra{
+    border-top: 1px solid var(--secondary);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.btn-compra-empleado-crear{
+
+}
+
+.btn-compra-empleado-pagar{
+    background-color: var(--primary);
+}
+
+.btn-compra-empleado-cancelar{
+    background-color: var(--tertiary);
+}
