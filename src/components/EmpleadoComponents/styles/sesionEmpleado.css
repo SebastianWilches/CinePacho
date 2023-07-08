@@ -1,0 +1,81 @@
+.Empleado-div-contenedor{
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.div-empleado-control-sesion{
+    display: flex;
+    gap: 15px;
+}
+
+.empleado-div-control{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 7px;
+}
+
+.funcion-form{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 80%;
+    padding: 35px;
+    gap: 16px;
+}
+
+.funcion-form-div{
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+    width: 50%;
+}
+
+.funcion-form-div>select, input{
+    width: 100%;
+    padding: 16px 10px;
+}
+
+.form-div-input-file{
+    background-color: white;
+    width: 100%;
+}
+
+.empleado-span-datos-title{
+    font-weight: bold;
+}
+
+.div-silla-seleccion-empleado{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.empleado-icon-silla{
+    font-size: 40px;
+}
+
+.empleado-div-listado-sillas-sala{
+    background-color: aqua;
+    width: 90%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    padding: 16px;
+}
+
+.empleado-silla-disponible{
+    color: var(--primary);
+}
+
+.empleado-silla-ocupada{
+    color: red;
+}
+

@@ -8,8 +8,8 @@ export const CineProvider = ({ children }) => {
     const [listaMultiplex, setListaMultiplex] = useState([]);
     const [openShoppingCart, setOpenShoppingCart] = useState(false); //Permite abrir el Modal ShoppingCart
     const [infoCliente, setInfoCliente] = useState([]);   //Info que retorna un login exitoso del cliente
+    const [infoEmpleado, setInfoEmpleado] = useState(null)
     const [tokenCliente, setTokenCliente] = useState([]); //Token que retorna un login exitoso del cliente
-
 
 
     return (
