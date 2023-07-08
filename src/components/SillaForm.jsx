@@ -92,11 +92,26 @@ export default function SillaForm({ idPelicula }) {
         }
         const idCompra = await POST_CrearCompraCliente(crearCompra, tokenCliente);
 
+        //Cambiar el nombre de propiedades
+        let modSillasSeleccionadas = listSillasSeleccionadas.map(item=>{
+            return {
+                idSala: item.Funciones_Sala_sala_id,
+                idMultiplex: item.Funciones_Sala_multiplex_id,
+                idPelicula: item.Funciones_Pelicula_pelicula_id,
+                horario: item.Funciones_horario.replace("T", " ").replace("Z", "").slice(0, -4),
+                idSilla: item.Silla_silla_id,
+                disponible: item.disponible
+            }
+        })
+
         let objectEnviarSillas = {
             idCompra,
-            sillasSeleccionadas: listSillasSeleccionadas
+            sillasSeleccionadas: modSillasSeleccionadas,
+            idMultiplex: parseInt(selectedMultiplex_ID),
         }
         console.log(objectEnviarSillas);
+
+
 
         await POST_EnviarSillas(objectEnviarSillas);
 
@@ -156,7 +171,7 @@ export default function SillaForm({ idPelicula }) {
                             <p><b>Entradas seleccionadas:</b>
                                 {
                                     listSillasSeleccionadas.map(silla => {
-                                        return (silla.idSilla + ', ')
+                                        return (silla.Silla_silla_id + ', ')
                                     })
                                 }
                             </p>

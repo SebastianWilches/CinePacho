@@ -7,10 +7,12 @@ import { FaCartShopping } from "react-icons/fa6";
 import './NavBar.css'
 
 export default function NavBar() {
-  const { openShoppingCart, setOpenShoppingCart, infoCliente, isLog, setIsLog } = useContext(CineContext);
+  const { openShoppingCart, setOpenShoppingCart, infoCliente, isLog, setIsLog, setInfoCliente, setTokenCliente } = useContext(CineContext);
 
   const logout = () =>{
     setIsLog(false);
+    setInfoCliente([]);
+    setTokenCliente([]);
   }
   return (
     <>
