@@ -4,30 +4,141 @@ var CanvasJSReact = require('@canvasjs/react-charts').default;
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 export default function ReportesAdmin() {
-    const salesData = [
-      { label: 'Avengers: Endgame', y: 70 },
-      { label: 'Toy Story', y: 23 },
-      { label: 'The Flash', y: 19 },
-      { label: 'Rápidos y Furiosos', y: 30 }
-    ];
-  
-    const options = {
-      animationEnabled: true,
-      title: {
-        text: 'Venta de películas'
+  const movieRatingData = [
+    { label: 'Los Vengadores', pésima: 1, mala: 1, regular: 1, buena: 0.7, excelente: 0 },
+    { label: 'Joker', pésima: 1, mala: 1, regular: 1, buena: 1, excelente: 0.4 },
+    { label: 'Toy Story 4', pésima: 1, mala: 1, regular: 1, buena: 0.4, excelente: 0 },
+    { label: 'Alan Wake', pésima: 1, mala: 0.5, regular: 0, buena: 0, excelente: 0 }
+  ];
+
+  const moviesData = [
+    { label: 'Multiplex A', y: 20 },
+    { label: 'Multiplex B', y: 30 },
+    { label: 'Multiplex C', y: 70 },
+    { label: 'Multiplex D', y: 25 }
+  ];
+
+  const salesData = [
+    { label: 'Avengers: Endgame', y: 70 },
+    { label: 'Toy Story', y: 23 },
+    { label: 'The Flash', y: 19 },
+    { label: 'Rápidos y Furiosos', y: 30 }
+  ];
+
+  const snacksData = [
+    { label: 'Perro caliente', y: 15 },
+    { label: 'Palomitas', y: 12 },
+    { label: 'Nachos', y: 9 }
+  ];
+
+  const optionsMovies = {
+    animationEnabled: true,
+    title: {
+      text: 'Películas más vistas'
+    },
+    data: [{
+      type: 'pie',
+      dataPoints: salesData
+    }]
+  };
+
+  const optionsMultiplex = {
+    animationEnabled: true,
+    title: {
+      text: 'Cantidad de ventas por multiplex'
+    },
+    data: [{
+      type: 'bar',
+      dataPoints: moviesData
+    }]
+  };
+
+  const optionsSnacks = {
+    animationEnabled: true,
+    title: {
+      text: 'Snacks más vendidos'
+    },
+    data: [{
+      type: 'doughnut',
+      dataPoints: snacksData
+    }]
+  };
+
+  const optionsMovieRating = {
+    animationEnabled: true,
+    title: {
+      text: 'Película más valorada'
+    },
+    axisX: {
+      title: 'Película'
+    },
+    axisY: {
+      title: 'Valoración',
+      interval: 1,
+      minimum: 0,
+      maximum: 5
+    },
+    toolTip: {
+      shared: true
+    },
+    legend: {
+      verticalAlign: 'top'
+    },
+    data: [
+      {
+        type: 'stackedColumn',
+        name: 'Pésima',
+        showInLegend: true,
+        dataPoints: movieRatingData.map((data) => ({ label: data.label, y: data.pésima }))
       },
-      data: [{
-        type: 'column',
-        dataPoints: salesData
-      }]
-    };
-  
-    return (
-      <div className="bg-white rounded p-4 shadow">
-        <h3 className="text-2xl font-bold mb-2">Contenido de Reportes</h3>
-        <div style={{ width: '100%', height: '400px' }}>
-          <CanvasJSChart options={options} />
+      {
+        type: 'stackedColumn',
+        name: 'Mala',
+        showInLegend: true,
+        dataPoints: movieRatingData.map((data) => ({ label: data.label, y: data.mala }))
+      },
+      {
+        type: 'stackedColumn',
+        name: 'Regular',
+        showInLegend: true,
+        dataPoints: movieRatingData.map((data) => ({ label: data.label, y: data.regular }))
+      },
+      {
+        type: 'stackedColumn',
+        name: 'Buena',
+        showInLegend: true,
+        dataPoints: movieRatingData.map((data) => ({ label: data.label, y: data.buena }))
+      },
+      {
+        type: 'stackedColumn',
+        name: 'Excelente',
+        showInLegend: true,
+        dataPoints: movieRatingData.map((data) => ({ label: data.label, y: data.excelente }))
+      }
+    ]
+  };
+
+  return (
+    <div className="bg-white rounded p-4 shadow">
+      <h3 className="text-2xl font-bold mb-2">Contenido de Reportes</h3>
+      <div className="grid grid-cols-2 gap-4">
+        <div>
+          <div style={{ height: '400px' }}>
+            <CanvasJSChart options={optionsMovies} />
+          </div>
+          <div style={{ height: '400px', marginTop: '2rem' }}>
+            <CanvasJSChart options={optionsMultiplex} />
+          </div>
+        </div>
+        <div>
+          <div style={{ height: '400px' }}>
+            <CanvasJSChart options={optionsSnacks} />
+          </div>
+          <div style={{ height: '400px', marginTop: '2rem' }}>
+            <CanvasJSChart options={optionsMovieRating} />
+          </div>
         </div>
       </div>
-    );
-  };
+    </div>
+  );
+};
