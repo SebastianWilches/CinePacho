@@ -9,14 +9,24 @@ export default function GenerarEmpleado() {
     phoneNumber: '',
     position: '',
     multiplex: '',
-    agilePoints: ''
+    agilePoints: '',
+    email: '',
+    password: '',
+    photo: null
   });
 
   const handleInputChange = (event) => {
-    setNewEmployee({
-      ...newEmployee,
-      [event.target.name]: event.target.value
-    });
+    if (event.target.name === 'photo') {
+      setNewEmployee({
+        ...newEmployee,
+        [event.target.name]: event.target.files[0]
+      });
+    } else {
+      setNewEmployee({
+        ...newEmployee,
+        [event.target.name]: event.target.value
+      });
+    }
   };
 
   const handleAddEmployee = () => {
@@ -29,7 +39,10 @@ export default function GenerarEmpleado() {
         phoneNumber: '',
         position: '',
         multiplex: '',
-        agilePoints: ''
+        agilePoints: '',
+        email: '',
+        password: '',
+        photo: null
       });
     }
   };
@@ -91,6 +104,15 @@ export default function GenerarEmpleado() {
             value={newEmployee.phoneNumber}
             onChange={handleInputChange}
           />
+          <label className="block text-gray-700 mt-2">Correo</label>
+          <input
+            type="text"
+            placeholder="Correo"
+            name="email"
+            className="bg-gray-200 rounded p-2 w-full"
+            value={newEmployee.email}
+            onChange={handleInputChange}
+          />
         </div>
         <div>
           <label className="block text-gray-700">Cargo</label>
@@ -135,6 +157,22 @@ export default function GenerarEmpleado() {
               </option>
             ))}
           </select>
+          <label className="block text-gray-700 mt-2">Contraseña</label>
+          <input
+            type="text"
+            placeholder="Contraseña"
+            name="password"
+            className="bg-gray-200 rounded p-2 w-full"
+            value={newEmployee.password}
+            onChange={handleInputChange}
+          />
+          <label className="block text-gray-700 mt-2">Foto</label>
+        <input
+          type="file"
+          name="photo"
+          className="bg-gray-200 rounded p-2 w-full"
+          onChange={handleInputChange}
+        />
         </div>
       </div>
       <button
@@ -171,6 +209,20 @@ export default function GenerarEmpleado() {
                 <p>
                   <span className="font-bold">Puntos Ágiles:</span> {employee.agilePoints}
                 </p>
+                <p>
+                  <span className="font-bold">Correo:</span> {employee.email}
+                </p>
+                <p>
+                  <span className="font-bold">Contraseña:</span> {employee.password}
+                </p>
+                {employee.photo && (
+                  <p>
+                    <span className="font-bold">Foto:</span>{' '}
+                    <a href={URL.createObjectURL(employee.photo)} style={{color: 'aqua'}} download={employee.photo.name}>
+                      {employee.photo.name}
+                    </a>
+                  </p>
+                )}
               </div>
               <button
                 className="bg-red-500 hover:bg-red-600 text-white rounded py-2 px-4"
