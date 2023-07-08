@@ -4,8 +4,12 @@ export default function GenerarEmpleado() {
   const [employees, setEmployees] = useState([]);
   const [newEmployee, setNewEmployee] = useState({
     name: '',
-    birthDate: '',
-    role: ''
+    role: '',
+    idNumber: '',
+    phoneNumber: '',
+    position: '',
+    multiplex: '',
+    agilePoints: ''
   });
 
   const handleInputChange = (event) => {
@@ -16,14 +20,16 @@ export default function GenerarEmpleado() {
   };
 
   const handleAddEmployee = () => {
-    if (newEmployee.name.trim() !== '' && newEmployee.birthDate.trim() !== '' && newEmployee.role.trim() !== '') {
-      const age = calculateAge(newEmployee.birthDate);
-      const employee = { ...newEmployee, age };
-      setEmployees([...employees, employee]);
+    if (newEmployee.name.trim() !== '' && newEmployee.role.trim() !== '') {
+      setEmployees([...employees, newEmployee]);
       setNewEmployee({
         name: '',
-        birthDate: '',
-        role: ''
+        role: '',
+        idNumber: '',
+        phoneNumber: '',
+        position: '',
+        multiplex: '',
+        agilePoints: ''
       });
     }
   };
@@ -34,45 +40,102 @@ export default function GenerarEmpleado() {
     setEmployees(updatedEmployees);
   };
 
-  const calculateAge = (birthDate) => {
-    const today = new Date();
-    const dob = new Date(birthDate);
-    let age = today.getFullYear() - dob.getFullYear();
-    const monthDiff = today.getMonth() - dob.getMonth();
-    if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < dob.getDate())) {
-      age--;
-    }
-    return age;
-  };
+  const roles = ['Vendedor de Snacks', 'Aseo', 'Promotor'];
+  const positions = ['Gerente', 'Supervisor', 'Operador'];
+  const multiplexes = ['Multiplex A', 'Multiplex B', 'Multiplex C'];
+  const agilePoints = ['10', '20', '30', '40', '50'];
 
   return (
     <div className="bg-white rounded p-4 shadow">
       <h3 className="text-xl font-bold mb-2">Gestión de Empleados</h3>
-      <div className="flex mb-4">
-        <input
-          type="text"
-          placeholder="Nombre"
-          name="name"
-          className="bg-gray-200 rounded p-2 w-40 mr-2"
-          value={newEmployee.name}
-          onChange={handleInputChange}
-        />
-        <input
-          type="date"
-          placeholder="Fecha de Nacimiento"
-          name="birthDate"
-          className="bg-gray-200 rounded p-2 w-40 mr-2"
-          value={newEmployee.birthDate}
-          onChange={handleInputChange}
-        />
-        <input
-          type="text"
-          placeholder="Rol"
-          name="role"
-          className="bg-gray-200 rounded p-2 w-40"
-          value={newEmployee.role}
-          onChange={handleInputChange}
-        />
+      <div className="grid grid-cols-2 gap-4 mb-4">
+        <div>
+          <label className="block text-gray-700">Nombre</label>
+          <input
+            type="text"
+            placeholder="Nombre"
+            name="name"
+            className="bg-gray-200 rounded p-2 w-full"
+            value={newEmployee.name}
+            onChange={handleInputChange}
+          />
+          <label className="block text-gray-700 mt-2">Rol</label>
+          <select
+            name="role"
+            className="bg-gray-200 rounded p-2 w-full"
+            value={newEmployee.role}
+            onChange={handleInputChange}
+          >
+            <option value="">Seleccionar Rol</option>
+            {roles.map((role) => (
+              <option key={role} value={role}>
+                {role}
+              </option>
+            ))}
+          </select>
+          <label className="block text-gray-700 mt-2">Cédula</label>
+          <input
+            type="text"
+            placeholder="Cédula"
+            name="idNumber"
+            className="bg-gray-200 rounded p-2 w-full"
+            value={newEmployee.idNumber}
+            onChange={handleInputChange}
+          />
+          <label className="block text-gray-700 mt-2">Celular</label>
+          <input
+            type="text"
+            placeholder="Celular"
+            name="phoneNumber"
+            className="bg-gray-200 rounded p-2 w-full"
+            value={newEmployee.phoneNumber}
+            onChange={handleInputChange}
+          />
+        </div>
+        <div>
+          <label className="block text-gray-700">Cargo</label>
+          <select
+            name="position"
+            className="bg-gray-200 rounded p-2 w-full"
+            value={newEmployee.position}
+            onChange={handleInputChange}
+          >
+            <option value="">Seleccionar Cargo</option>
+            {positions.map((position) => (
+              <option key={position} value={position}>
+                {position}
+              </option>
+            ))}
+          </select>
+          <label className="block text-gray-700 mt-2">Multiplex</label>
+          <select
+            name="multiplex"
+            className="bg-gray-200 rounded p-2 w-full"
+            value={newEmployee.multiplex}
+            onChange={handleInputChange}
+          >
+            <option value="">Seleccionar Multiplex</option>
+            {multiplexes.map((multiplex) => (
+              <option key={multiplex} value={multiplex}>
+                {multiplex}
+              </option>
+            ))}
+          </select>
+          <label className="block text-gray-700 mt-2">Puntos Ágiles</label>
+          <select
+            name="agilePoints"
+            className="bg-gray-200 rounded p-2 w-full"
+            value={newEmployee.agilePoints}
+            onChange={handleInputChange}
+          >
+            <option value="">Seleccionar Puntos Ágiles</option>
+            {agilePoints.map((points) => (
+              <option key={points} value={points}>
+                {points}
+              </option>
+            ))}
+          </select>
+        </div>
       </div>
       <button
         className="bg-blue-500 hover:bg-blue-600 text-white rounded py-2 px-4 mb-4"
@@ -87,20 +150,34 @@ export default function GenerarEmpleado() {
       ) : (
         <ul className="border border-gray-300 rounded">
           {employees.map((employee, index) => (
-            <li key={index} className="flex items-center p-3 border-b border-gray-300 last:border-b-0">
-              <div className="flex-grow">
-                <p className="text-lg font-bold">{employee.name}</p>
-                <p className="text-gray-600">Edad: {employee.age}</p>
-              </div>
+            <li key={index} className="p-4 border-b border-gray-300 last:border-b-0 flex justify-between">
               <div>
-                <p className="text-gray-600">{employee.role}</p>
-                <button
-                  className="bg-red-500 hover:bg-red-600 text-white rounded py-1 px-2"
-                  onClick={() => handleRemoveEmployee(index)}
-                >
-                  Eliminar
-                </button>
+                <p className="text-lg font-bold">{employee.name}</p>
+                <p>
+                  <span className="font-bold">Rol:</span> {employee.role}
+                </p>
+                <p>
+                  <span className="font-bold">Cédula:</span> {employee.idNumber}
+                </p>
+                <p>
+                  <span className="font-bold">Celular:</span> {employee.phoneNumber}
+                </p>
+                <p>
+                  <span className="font-bold">Cargo:</span> {employee.position}
+                </p>
+                <p>
+                  <span className="font-bold">Multiplex:</span> {employee.multiplex}
+                </p>
+                <p>
+                  <span className="font-bold">Puntos Ágiles:</span> {employee.agilePoints}
+                </p>
               </div>
+              <button
+                className="bg-red-500 hover:bg-red-600 text-white rounded py-2 px-4"
+                onClick={() => handleRemoveEmployee(index)}
+              >
+                Eliminar
+              </button>
             </li>
           ))}
         </ul>
