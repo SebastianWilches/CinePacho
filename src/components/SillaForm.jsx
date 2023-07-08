@@ -8,7 +8,7 @@ import './SillaForm.css'
 
 export default function SillaForm({ idPelicula }) {
     const { register, handleSubmit } = useForm(); //State del form
-    const urlBase = 'https://cinepachoapi.azurewebsites.net/';
+    const urlBase = 'http://localhost:3001/';
     const [listFunciones, setListFunciones] = useState([]);
     const [loading, setLoading] = useState(true);
     const [loading2, setLoading2] = useState(true);
