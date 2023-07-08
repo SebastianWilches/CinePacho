@@ -33,7 +33,7 @@
     align-items: flex-start;
     justify-content: center;
     flex-direction: column;
-    width: 50%;
+    width: 100%;
 }
 
 .funcion-form-div>select, input{
@@ -63,12 +63,12 @@
 }
 
 .empleado-div-listado-sillas-sala{
-    background-color: aqua;
-    width: 90%;
+    /* background-color: aqua; */
+    width: 100%;
     display: flex;
     flex-wrap: wrap;
     gap: 16px;
-    padding: 16px;
+    justify-content: center;
 }
 
 .empleado-silla-disponible{
@@ -76,6 +76,74 @@
 }
 
 .empleado-silla-ocupada{
-    color: red;
+    color: var(--secondary);
+}
+
+.empleado-silla-tomada{
+    color: var(--tertiary)
+}
+
+.empleado-div-lista-snacks{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.empleado-div-snack{
+    min-width: fit-content;
+    outline: 1px solid var(--primary);
+    border-radius: 5px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+}
+
+.empleado-div-snack>img{
+    display: block;
+    width: 200px;
+    object-fit: scale-down;
+    max-height: 200px;
+}
+
+.empleado-div-snack>div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.empleado-div-snack>div>div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    font-size: 25px;
+}
+
+.btn-empleado-snack{
+    cursor: pointer;
+}
+
+.btn-add-cantidad{
+    color: var(--primary);
+}
+
+.btn-minus-cantidad{
+    color: var(--tertiary);
+}
+
+.btn-agrega-producto-empleado{
+    background-color: var(--primary);
+    margin: 0;
+}
+
+.btn-elimina-producto-empleado{
+    background-color: var(--tertiary);
+    margin: 0;
 }
 
