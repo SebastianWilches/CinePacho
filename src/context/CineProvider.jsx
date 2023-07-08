@@ -10,6 +10,7 @@ export const CineProvider = ({ children }) => {
     const [infoCliente, setInfoCliente] = useState([]);   //Info que retorna un login exitoso del cliente
     const [tokenCliente, setTokenCliente] = useState([]); //Token que retorna un login exitoso del cliente
     const [listaCompraID, setListaCompraID] = useState([]); //Aquí se almacena todas las compras que haga un cliente
+    const [isLog, setIsLog] = useState(false);
 
 
 
@@ -27,7 +28,9 @@ export const CineProvider = ({ children }) => {
                 infoCliente,
                 tokenCliente,
                 setListaCompraID,
-                listaCompraID
+                listaCompraID,
+                setIsLog,
+                isLog
             }
         }>
             {children}

@@ -12,6 +12,8 @@ export const SnacksPage = () => {
   const [snacks, setSnacks] = useState([]);
   const [loading, setLoading] = useState(true);
   const { selectedMultiplex_ID } = useContext(CineContext);
+  const [selectedSnacks, setSelectedSnacks] = useState([]);
+  let totalSnacks = 0;
 
   useEffect(() => {
     GET_Snacks(selectedMultiplex_ID);
@@ -29,6 +31,7 @@ export const SnacksPage = () => {
     <>
       <article className='container'>
         <h2 className='title-container'>Deléitate con nuestros irresistibles snacks:<br></br> ¡La combinación perfecta para disfrutar de cada película!</h2>
+        <p><b>Snacks seleccionados: </b> {selectedSnacks.map(snack=>`${snack.nombresnack},`)}</p>
         <div className="container-snacks">
           {
             loading ?
@@ -39,7 +42,7 @@ export const SnacksPage = () => {
               />)
               :
               (snacks.map((snack, index) => {
-                return <SnackItem infoSnack={snack} key={index} />
+                return <SnackItem infoSnack={snack} key={index} selectedSnacks={selectedSnacks} setSelectedSnacks={setSelectedSnacks}/>
               }))
           }
         </div>

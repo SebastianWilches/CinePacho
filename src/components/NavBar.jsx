@@ -7,7 +7,11 @@ import { FaCartShopping } from "react-icons/fa6";
 import './NavBar.css'
 
 export default function NavBar() {
-  const { openShoppingCart, setOpenShoppingCart } = useContext(CineContext);
+  const { openShoppingCart, setOpenShoppingCart, infoCliente, isLog, setIsLog } = useContext(CineContext);
+
+  const logout = () =>{
+    setIsLog(false);
+  }
   return (
     <>
       <nav className='navBar'>
@@ -19,7 +23,16 @@ export default function NavBar() {
         </section>
         <section className='navBar--profile'>
           <button onClick={() => setOpenShoppingCart(true)}><h2 className='shoppingCartIcon'><FaCartShopping /></h2></button>
-          <Link to={'login'}><h2 className='navBar--link'>Iniciar sesión</h2></Link>
+          {
+            (isLog) ? (
+              <>
+                <h2>{infoCliente.nombre}</h2>
+                <button className='btn-logout' onClick={logout}>X</button>
+              </>
+            ) :
+              (<Link to={'login'}><h2 className='navBar--link'>Iniciar sesión</h2></Link>)
+          }
+
         </section>
       </nav>
       <Outlet />
