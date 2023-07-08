@@ -1,0 +1,11 @@
+.headerCarrito{
+    display: flex;
+    flex-direction: row;
+
+    margin-right: 20px;
+}
+
+.iconHeaderCarrito{
+    margin: auto 0;
+    margin-left: 3px;
+}

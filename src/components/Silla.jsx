@@ -13,7 +13,7 @@ export default function Silla({infoSilla, numSilla, setListSillasSeleccionadas, 
 
   return (
     <button className={`btn-silla ${infoSilla.disponible}`} onClick={reservaSilla}>
-      {infoSilla.Silla_silla_id}
+      {infoSilla.idSilla}
     </button>
   )
 }

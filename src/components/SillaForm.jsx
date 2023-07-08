@@ -6,6 +6,7 @@ import { FaCircleCheck } from "react-icons/fa6";
 import Silla from './Silla';
 
 import './SillaForm.css'
+// import Swal from 'sweetalert2';
 
 export default function SillaForm({ idPelicula }) {
     //Constantes y utils
@@ -20,7 +21,7 @@ export default function SillaForm({ idPelicula }) {
     const [listSillasSeleccionadas, setListSillasSeleccionadas] = useState([]);
 
     //Contexto
-    const { selectedMultiplex_ID, infoCliente, tokenCliente, setListaCompraID, listaCompraID } = useContext(CineContext);
+    const { selectedMultiplex_ID, infoCliente, tokenCliente, setListaCompraID, listaCompraID, isLog } = useContext(CineContext);
 
 
 
@@ -73,6 +74,27 @@ export default function SillaForm({ idPelicula }) {
         return idCompra;
     }
 
+    const POST_CrearCompraNoRegistrado = async (object) => {
+        const response = await fetch(`${urlBase}crearCompraNoRegistrado`, {
+            method: 'POST',
+            body: JSON.stringify(object),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        const { idCompra } = await response.json();
+
+        let factura = {
+            idCompra,
+            descripcion: "Tickets de película",
+            listSillasSeleccionadas
+        }
+
+        setListaCompraID(listaCompraID => listaCompraID.concat(factura))
+
+        return idCompra;
+    }
+
     const POST_EnviarSillas = async (object) => {
         const response = await fetch(`${urlBase}seleccionarSillasCompra`, {
             method: 'POST',
@@ -90,22 +112,34 @@ export default function SillaForm({ idPelicula }) {
             idCliente: infoCliente.cliente_id,
             correo: infoCliente.correo
         }
-        const idCompra = await POST_CrearCompraCliente(crearCompra, tokenCliente);
 
-        //Cambiar el nombre de propiedades
-        let modSillasSeleccionadas = listSillasSeleccionadas.map(item=>{
+        let idCompra = 0;
+
+        if (isLog) {
+            idCompra = await POST_CrearCompraCliente(crearCompra, tokenCliente);   //Crear ID de compra si el usuario esta logeado
+        } else {
+            let noLogin = {
+                idMultiplex: selectedMultiplex_ID
+            }
+            idCompra = await POST_CrearCompraNoRegistrado(noLogin);   //Crear el ID de compra si el usuario no está logeado
+        }
+
+
+
+        let modSillasSeleccionadas = listSillasSeleccionadas.map(item => {
             return {
-                idSala: item.Funciones_Sala_sala_id,
-                idMultiplex: item.Funciones_Sala_multiplex_id,
-                idPelicula: item.Funciones_Pelicula_pelicula_id,
-                horario: item.Funciones_horario.replace("T", " ").replace("Z", "").slice(0, -4),
-                idSilla: item.Silla_silla_id,
+                idSala: item.idSala,
+                idMultiplex: item.idMultiplex,
+                idPelicula: item.idPelicula,
+                horario: item.horario.replace("T", " ").replace("Z", "").slice(0, -4),
+                idSilla: item.idSilla,
                 disponible: item.disponible
             }
         })
 
         let objectEnviarSillas = {
             idCompra,
+            // sillasSeleccionadas: listSillasSeleccionadas,
             sillasSeleccionadas: modSillasSeleccionadas,
             idMultiplex: parseInt(selectedMultiplex_ID),
         }
@@ -113,7 +147,11 @@ export default function SillaForm({ idPelicula }) {
 
 
 
-        await POST_EnviarSillas(objectEnviarSillas);
+        await POST_EnviarSillas(objectEnviarSillas);   //Anexar los tickets de compra al ID de compra
+        // Swal.fire({
+        //     title: "¡Tickets añadidos al carrito de compras!",
+        //     icon: "success",
+        //   });
 
 
     }
@@ -171,14 +209,14 @@ export default function SillaForm({ idPelicula }) {
                             <p><b>Entradas seleccionadas:</b>
                                 {
                                     listSillasSeleccionadas.map(silla => {
-                                        return (silla.Silla_silla_id + ', ')
+                                        return (silla.idSilla + ', ')
                                     })
                                 }
                             </p>
                             <p><b>Precio: </b>
-                            {`$${listSillasSeleccionadas.length*100}`}
+                                {`$${listSillasSeleccionadas.length * 100}`}
                             </p>
-                            <button className='btn-carrito' onClick={btnAgregarCarrito}>Agregar al carrito <FaCircleCheck className='icon-carrito'/></button>
+                            <button className='btn-carrito' onClick={btnAgregarCarrito}>Agregar al carrito <FaCircleCheck className='icon-carrito' /></button>
 
                         </article>
                     </section>
