@@ -9,12 +9,21 @@ export default function ShoppingCart() {
   const { openShoppingCart, setOpenShoppingCart, listaCompraID, setListaCompraID, isLog } = useContext(CineContext);
   const urlBase = 'https://cinepachoapi.azurewebsites.net/';
 
-  const test = () => {
-    console.log(listaCompraID);
-  }
 
   const POST_ProcesarCompra = async (object) => {
     const response = await fetch(`${urlBase}procesarCompra`, {
+      method: 'POST',
+      body: JSON.stringify(object),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    const data = await response.json()
+    console.log(data);
+  }
+
+  const POST_CancelarCompra = async (object) => {
+    const response = await fetch(`${urlBase}cancelarCompra`, {
       method: 'POST',
       body: JSON.stringify(object),
       headers: {
@@ -37,6 +46,22 @@ export default function ShoppingCart() {
     Swal.fire({
       title: "¡Pago completado!",
       icon: "success",
+    });
+
+    // Limpiar carrito
+    setListaCompraID([]);
+  }
+
+  const btnCancelarPago = () => {
+    listaCompraID.map(item => {
+      let objectCompra = {
+        idCompra: item.idCompra,
+      }
+      POST_CancelarCompra(objectCompra);
+    })
+    Swal.fire({
+      title: "¡Transacciones canceladas!",
+      icon: "warning",
     });
 
     // Limpiar carrito
@@ -67,12 +92,14 @@ export default function ShoppingCart() {
               )
             })
           }
-          <button onClick={test}>ver</button>
 
           <Card.Footer>
             <div className="flex w-full space-x-2">
               <Button className="w-full" color="green" onClick={btnPasarelaPago}>
                 Comprar
+              </Button>
+              <Button className="w-full" color="red" onClick={btnCancelarPago}>
+                Cancelar
               </Button>
             </div>
           </Card.Footer>
