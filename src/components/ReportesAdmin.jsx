@@ -1,10 +1,119 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import CanvasJSReact from '@canvasjs/react-charts';
 import PDFGenerate from './PDFGenerate';
 
 const CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 export default function ReportesAdmin() {
+  const urlBase = 'https://cinepachoapi.azurewebsites.net/';
+  //const [movieRatingData, setMovieRatingData] = useState(null); fallando
+  const [jsonData, setJsonData] = useState(null);
+  const [salesData, setSalesData] = useState(null);
+  const [snacksData, setSnacksData] = useState(null);
+
+  useEffect(() => {
+    GET_peliculasMasVistas();
+    GET_snacksMasVendidos();
+    GET_valoracionPeliculas();
+  })
+
+  const GET_peliculasMasVistas = async () => {
+        const response = await fetch(`${urlBase}peliculasMasVistas`, {
+            method: 'GET'
+        })
+        const dataGET = await response.json();
+        const dataJSON = JSON.stringify(dataGET, null, 2);
+        const parsedData = JSON.parse(dataJSON);
+
+        const salesData = parsedData.reporteDos.map(item => ({
+          label: item.titulo,
+          y: item.cantidadVistas
+        }))
+
+        setSalesData(salesData);
+  }
+
+  const GET_snacksMasVendidos = async () => {
+    const response = await fetch(`${urlBase}snacksMasVendidos`, {
+        method: 'GET'
+    })
+    const dataGET = await response.json();
+    const dataJSON = JSON.stringify(dataGET, null, 2);
+    const parsedData = JSON.parse(dataJSON);
+
+
+    const snacksData = parsedData.reporteCuatro.map(item => ({
+      label: item.nombresnack,
+      y: item["count(c.cantidadcomprada)"]
+    }))
+
+    setSnacksData(snacksData);
+  }
+
+  const GET_valoracionPeliculas = async () => {
+    const response = await fetch(`${urlBase}valoracionPeliculas`, {
+        method: 'GET'
+    })
+    const dataGET = await response.json();
+    const dataJSON = JSON.stringify(dataGET, null, 2);
+    const parsedData = JSON.parse(dataJSON);
+
+    const datosParsed = parsedData.reporteTres;
+    const puntajes = datosParsed.map(item => item.puntajepromedio);
+
+    const arregloDividido = puntajes.map(dividirEnPartes);
+    const resultado = arregloDividido;
+
+    const labelMovie = datosParsed.map(item => ({
+      label: item.titulo
+    }))
+
+    const movieRatingData = resultado.map((arr, index) => ({
+      label: labelMovie[index].label,
+      pesima: arr[0],
+      mala: arr[1],
+      regular: arr[2],
+      buena: arr[3],
+      excelente: arr[4]
+    }));
+
+    console.log(movieRatingData);
+    //setMovieRatingData(movieRatingData); el Set
+  }
+
+  const GET_ventasCine = async () => {
+    const response = await fetch(`${urlBase}ventasCine`, {
+        method: 'GET'
+    })
+    const data = await response.json();
+    return data;
+  }
+
+  const dividirEnPartes = (numero) => {
+    const partes = [];
+    let valorParte = Math.min(1, numero);
+    
+    for (let i = 0; i < 4; i++) {
+      partes.push(valorParte);
+      numero -= valorParte;
+      valorParte = Math.max(0, Math.min(1, numero));
+    }
+  
+    partes.push(numero);
+  
+    return partes;
+  }
+
+  const handleDisplayJson = async () => {
+    try {
+      const data = await GET_ventasCine();
+      setJsonData(data);
+    } catch (error) {
+      console.error('Error:', error);
+      return null;
+    }
+  };
+
   const movieRatingData = [
     { label: 'Los Vengadores', pesima: 1, mala: 1, regular: 1, buena: 0.7, excelente: 0 },
     { label: 'Joker', pesima: 1, mala: 1, regular: 1, buena: 1, excelente: 0.4 },
@@ -17,19 +126,6 @@ export default function ReportesAdmin() {
     { label: 'Multiplex B', y: 30 },
     { label: 'Multiplex C', y: 70 },
     { label: 'Multiplex D', y: 25 }
-  ];
-
-  const salesData = [
-    { label: 'Avengers: Endgame', y: 70 },
-    { label: 'Toy Story', y: 23 },
-    { label: 'The Flash', y: 19 },
-    { label: 'Rápidos y Furiosos', y: 30 }
-  ];
-
-  const snacksData = [
-    { label: 'Perro caliente', y: 15 },
-    { label: 'Palomitas', y: 12 },
-    { label: 'Nachos', y: 9 }
   ];
 
   const optionsMovies = {
@@ -137,6 +233,12 @@ export default function ReportesAdmin() {
           </div>
           <div style={{ height: '400px', marginTop: '2rem' }}>
             <CanvasJSChart options={optionsMovieRating} />
+          </div>
+          <div>
+              <button onClick={handleDisplayJson}>Desplegar JSON</button>
+            {jsonData && (
+              <pre>{JSON.stringify(jsonData, null, 2)}</pre>
+            )}
           </div>
         </div>
       </div>
