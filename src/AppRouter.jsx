@@ -12,8 +12,7 @@ import { MoviePage } from "./pages/MoviePage";
 import CrearConsumible from "./components/EmpleadoComponents/containers/CrearConsumible";
 import { CineContext } from "./context/CineContext";
 import RutasProtegidaAdmin from "./security/RutasProtegidasAdmin";
-import { AdminPage } from './pages/AdminPage';
-
+import { AdminPage } from "./pages/AdminPage";
 
 export default function AppRouter() {
   const { infoCliente, tokenCliente, auth } = useContext(CineContext);
@@ -30,7 +29,6 @@ export default function AppRouter() {
             <Route path="snacks" element={<SnacksPage />} />
             <Route path="login" element={<LoginPage />} />
             <Route path="register" element={<RegisterPage />} />
-            <Route path='admin' element={<AdminPage/>} />
           </Route>
 
           <Route
@@ -44,7 +42,18 @@ export default function AppRouter() {
           >
             <Route path="/sesionEmpleado" element={<CrearConsumible />} />
           </Route>
-
+            {console.log(auth && tokenCliente && infoCliente.nombrerol === "super")}
+          <Route
+            element={
+              <RutasProtegidaAdmin
+                autenticado={
+                  auth && tokenCliente && infoCliente.nombrerol === "super"
+                }
+              />
+            }
+          >
+            <Route path="/admin" element={<AdminPage />} />
+          </Route>
         </Routes>
       </BrowserRouter>
     </>

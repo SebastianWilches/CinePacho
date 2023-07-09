@@ -51,6 +51,7 @@ export default function LoginForm() {
       setTokenCliente(data.token);
       setIsLog(true);
       setAuth(data.auth)
+      console.log(data.usuario);
       Swal.fire({
         title: "¡Usuario logeado!",
         icon: "success",
@@ -120,6 +121,10 @@ export default function LoginForm() {
       {
         infoCliente && infoCliente.nombrerol && infoCliente.nombrerol === 'admin' && <Navigate to='/sesionEmpleado' />
       }
+      {
+        infoCliente && infoCliente.nombrerol && infoCliente.nombrerol === 'super' && <Navigate to='/admin' />
+      }
+       
     </>
   );
 
