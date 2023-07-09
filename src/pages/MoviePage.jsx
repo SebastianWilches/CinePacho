@@ -10,7 +10,7 @@ import { FaBook, FaFaceLaugh, FaRegClock, FaRegStar } from 'react-icons/fa6';
 
 export const MoviePage = () => {
     const { id: idPelicula } = useParams();
-    const urlBase = 'http://localhost:3001/';
+    const urlBase = 'https://cinepachoapi.azurewebsites.net/';
     const [movies, setMovies] = useState([]);
     const [loading, setLoading] = useState(true);
 

@@ -11,7 +11,8 @@ export const RegisterPage = () => {
     <div className="div-contenedor-login">
       <section className='container-loginPage'>
         <aside className='header-loginPage'>
-          <img src={perfil} alt="Imagen perfil login" className='imgLogin' />
+          {/* <img src={perfil} alt="Imagen perfil login" className='imgLogin' /> */}
+          <div alt="Imagen perfil login" className='imgRegister' />
         </aside>
         <article className='body-loginPage'>
           <p className='titleLoginForm'>ÚNETE A CINEPACHO</p>

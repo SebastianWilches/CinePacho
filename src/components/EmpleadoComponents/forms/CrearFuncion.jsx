@@ -5,9 +5,9 @@ import "react-datepicker/dist/react-datepicker.css";
 
 const CrearFuncion = () => {
   
-  let listaSalasURL = "http://localhost:3001/listaSalasMultiplex";
-  let listaPeliculasURL = "http://localhost:3001/listaPeliculas";
-  let crearFuncionURL = "http://localhost:3001/crearFuncion";
+  let listaSalasURL = "https://cinepachoapi.azurewebsites.net/listaSalasMultiplex";
+  let listaPeliculasURL = "https://cinepachoapi.azurewebsites.net/listaPeliculas";
+  let crearFuncionURL = "https://cinepachoapi.azurewebsites.net/crearFuncion";
 
   const { infoCliente } = useContext(CineContext);
 

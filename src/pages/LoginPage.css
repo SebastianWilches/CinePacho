@@ -47,7 +47,17 @@
 }
 
 .imgLogin{
-    width: 100%;
+    width: 15rem;
+    background-image: url('../../public/Perfil.png');
+
+    background-image: no-repeat;
+    background-image: fixed;
+    background-image: center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    /* background-image: url('https://cinepachoapi.azurewebsites.net/uploads/perfil.jpeg'); */
 }
 
 @media (max-width: 1366px) {
