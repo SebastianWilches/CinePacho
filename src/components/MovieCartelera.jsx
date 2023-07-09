@@ -5,6 +5,7 @@ import './MovieCartelera.css'
 import imgJoker from '../img/MovieCartelera2.jpg'
 
 import star from '../img/Star.png'
+import { AiFillStar } from 'react-icons/ai'
 
 export default function MovieCartelera({ infoPelicula: { titulo, puntajePromedio, pelicula_id, direccionFoto } }) {
     return (
@@ -15,7 +16,8 @@ export default function MovieCartelera({ infoPelicula: { titulo, puntajePromedio
                     <h2 className='title-movie'>{titulo}</h2>
                     <div className='container--star'>
                         <p className='text-rating'>{puntajePromedio} / 5</p>
-                            <img src={star} alt="Icono Estrella" className='imgStarMovie' />
+
+                        <AiFillStar className='imgStar' />
                     </div>
                 </section>
             </Link>

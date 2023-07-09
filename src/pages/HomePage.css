@@ -51,6 +51,8 @@ h2 {
 
 .imgStar {
     height: 1rem;
+    color: orange;
+    margin: auto 0;
 }
 
 .imgFeaturedMovie {

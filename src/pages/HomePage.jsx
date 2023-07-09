@@ -4,6 +4,7 @@ import Footer from '../components/Footer'
 import { Modal, Button, Card } from '@rewind-ui/core';
 import { useForm } from 'react-hook-form'
 import { CineContext } from '../context/CineContext';
+import { AiFillStar } from "react-icons/ai";
 
 
 import './HomePage.css'
@@ -44,11 +45,11 @@ export const HomePage = () => {
               <h3>WALK ALONE</h3>
               <p>“Un exitoso psicólogo llamado David se ve envuelto en una serie de eventos misteriosos después de que una de sus pacientes, Sarah, desaparece sin dejar rastro. A medida que David profundiza en su investigación para encontrarla, comienza a descubrir secretos oscuros y perturbadores sobre la vida de Sarah y la identidad de sus otros pacientes.”</p>
               <div className='container--star'>
-                <img src={star} alt="Icono Estrella" className='imgStar' />
-                <img src={star} alt="Icono Estrella" className='imgStar' />
-                <img src={star} alt="Icono Estrella" className='imgStar' />
-                <img src={star} alt="Icono Estrella" className='imgStar' />
-                <img src={star} alt="Icono Estrella" className='imgStar' />
+                <AiFillStar className='imgStar' />
+                <AiFillStar className='imgStar' />
+                <AiFillStar className='imgStar' />
+                <AiFillStar className='imgStar' />
+                <AiFillStar className='imgStar' />
               </div>
             </div>
             <div></div>
@@ -60,11 +61,11 @@ export const HomePage = () => {
               <h3>WALK ALONE</h3>
               <p>“Un exitoso psicólogo llamado David se ve envuelto en una serie de eventos misteriosos después de que una de sus pacientes, Sarah, desaparece sin dejar rastro. A medida que David profundiza en su investigación para encontrarla, comienza a descubrir secretos oscuros y perturbadores sobre la vida de Sarah y la identidad de sus otros pacientes.”</p>
               <div className='container--star'>
-                <img src={star} alt="Icono Estrella" className='imgStar' />
-                <img src={star} alt="Icono Estrella" className='imgStar' />
-                <img src={star} alt="Icono Estrella" className='imgStar' />
-                <img src={star} alt="Icono Estrella" className='imgStar' />
-                <img src={star} alt="Icono Estrella" className='imgStar' />
+                <AiFillStar className='imgStar' />
+                <AiFillStar className='imgStar' />
+                <AiFillStar className='imgStar' />
+                <AiFillStar className='imgStar' />
+                <AiFillStar className='imgStar' />
               </div>
             </div>
             <div alt="Poster pelicula destacada" className='imgFeaturedMovie' />
@@ -73,17 +74,17 @@ export const HomePage = () => {
 
 
           <article className='container--FeaturedMovie'>
-          <div alt="Poster pelicula destacada" className='imgFeaturedMovie' />
+            <div alt="Poster pelicula destacada" className='imgFeaturedMovie' />
             {/* <img src={img} alt="Poster pelicula destacada" className='imgFeaturedMovie' /> */}
             <div>
               <h3>WALK ALONE</h3>
               <p>“Un exitoso psicólogo llamado David se ve envuelto en una serie de eventos misteriosos después de que una de sus pacientes, Sarah, desaparece sin dejar rastro. A medida que David profundiza en su investigación para encontrarla, comienza a descubrir secretos oscuros y perturbadores sobre la vida de Sarah y la identidad de sus otros pacientes.”</p>
               <div className='container--star'>
-                <img src={star} alt="Icono Estrella" className='imgStar' />
-                <img src={star} alt="Icono Estrella" className='imgStar' />
-                <img src={star} alt="Icono Estrella" className='imgStar' />
-                <img src={star} alt="Icono Estrella" className='imgStar' />
-                <img src={star} alt="Icono Estrella" className='imgStar' />
+                <AiFillStar className='imgStar' />
+                <AiFillStar className='imgStar' />
+                <AiFillStar className='imgStar' />
+                <AiFillStar className='imgStar' />
+                <AiFillStar className='imgStar' />
               </div>
             </div>
             <div></div>
