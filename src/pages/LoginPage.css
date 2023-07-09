@@ -47,8 +47,10 @@
 }
 
 .imgLogin{
-    width: 15rem;
-    background-image: url('../../public/Perfil.png');
+    width: 20rem;
+
+    /* background-image: url('../../public/Perfil.png'); */
+    background-image: url('https://cinepachoapi.azurewebsites.net/uploads/loginfoto.jpeg');
 
     background-image: no-repeat;
     background-image: fixed;
@@ -57,12 +59,20 @@
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+
+    border-radius: 50%;
     /* background-image: url('https://cinepachoapi.azurewebsites.net/uploads/perfil.jpeg'); */
 }
 
 @media (max-width: 1366px) {
     .imgLogin{
         width: 60%;
+    }
+    .header-loginPage{
+        border-radius: 50px 50px 50px 50px;
+    }
+    .body-loginPage{
+        border-radius: 50px 50px 50px 50px;
     }
 }
 
