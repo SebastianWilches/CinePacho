@@ -6,7 +6,7 @@ import './ShoppingCart.css'
 import Swal from 'sweetalert2';
 
 export default function ShoppingCart() {
-  const { openShoppingCart, setOpenShoppingCart, listaCompraID, setListaCompraID, isLog, selectedSnacks, setSelectedSnacks, infoCliente } = useContext(CineContext);
+  const { openShoppingCart, setOpenShoppingCart, listaCompraID, setListaCompraID, isLog, selectedSnacks, setSelectedSnacks, infoCliente, selectedMultiplex_ID } = useContext(CineContext);
   const urlBase = 'https://cinepachoapi.azurewebsites.net/';
 
   const calificarPelicula = (idPelicula) => {
@@ -14,22 +14,22 @@ export default function ShoppingCart() {
       title: "¡Califica la película con una puntuación del 1 al 5!",
       input: "number",
       inputAttributes: {
-          autocapitalize: "off"
+        autocapitalize: "off"
       },
       showCancelButton: true,
       confirmButtonText: "Ingresar",
       showLoaderOnConfirm: true,
       preConfirm: (calificacion) => {
-          
+
         let objectCalificar = {
           idCliente: infoCliente.cliente_id,
           idPelicula: idPelicula,
-          puntaje:calificacion,
+          puntaje: calificacion,
         }
         console.log('Objecto a calificar', objectCalificar);
-          POST_CalificarPelicula(objectCalificar);
+        POST_CalificarPelicula(objectCalificar);
       }
-  });
+    });
   }
 
   const POST_CalificarPelicula = async (object) => {
@@ -68,7 +68,26 @@ export default function ShoppingCart() {
     console.log(data);
   }
 
+
+  const POST_PagoPasarela = async (object) => {
+    const response = await fetch(`${urlBase}realizarPago`, {
+      method: 'POST',
+      body: JSON.stringify(object),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    const data = await response.json();
+    window.open(data.urlPago, '_blank');ñ
+    console.log('POST_PagoPasarela', data);
+  }
+
+
+
   const btnPasarelaPago = () => {
+    let idPasarela = []
+
+    //ID de compras de peliculas
     listaCompraID.map(item => {
       let objectCompra = {
         idCompra: item.idCompra,
@@ -76,10 +95,13 @@ export default function ShoppingCart() {
         pagoPuntos: [],
       }
       POST_ProcesarCompra(objectCompra);
-      if(isLog){
+      if (isLog) {
         calificarPelicula(item.idPelicula);
       }
+
+      idPasarela.push(objectCompra.idCompra);
     })
+    //ID de compras de snacks
     selectedSnacks.map(item => {
       let objectCompra = {
         idCompra: item.idCompra,
@@ -87,11 +109,23 @@ export default function ShoppingCart() {
         pagoPuntos: [],
       }
       POST_ProcesarCompra(objectCompra);
+
+      idPasarela.push(objectCompra.idCompra);
     })
     // Swal.fire({
     //   title: "¡Pago completado!",
     //   icon: "success",
     // });
+
+
+    //Pasarela de pago conjunta
+    console.log('IDS de toda la factura', idPasarela);
+    let objectPasarela = {
+      idMultiplex: selectedMultiplex_ID,
+      arregloCompras: idPasarela
+    }
+    POST_PagoPasarela(objectPasarela)
+
 
     // Limpiar carrito
     setListaCompraID([]);
