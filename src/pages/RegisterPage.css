@@ -26,8 +26,9 @@
 }
 
 .imgRegister{
-    width: 30rem;
-    background-image: url('../../public/Perfil.png');
+    width: 20rem;
+    /* background-image: url('../../public/Perfil.png'); */
+    background-image: url('https://cinepachoapi.azurewebsites.net/uploads/loginfoto.jpeg');
 
     background-image: no-repeat;
     background-image: fixed;
@@ -36,4 +37,5 @@
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover; 
+    background-position: center;
 }
