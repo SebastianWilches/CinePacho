@@ -1,15 +1,10 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import CanvasJSReact from '@canvasjs/react-charts';
 import PDFGenerate from './PDFGenerate';
 
 const CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 export default function ReportesAdmin() {
-  const movieChartRef = useRef(null);
-  const multiplexChartRef = useRef(null);
-  const snacksChartRef = useRef(null);
-  const movieRatingChartRef = useRef(null);
-
   const movieRatingData = [
     { label: 'Los Vengadores', pesima: 1, mala: 1, regular: 1, buena: 0.7, excelente: 0 },
     { label: 'Joker', pesima: 1, mala: 1, regular: 1, buena: 1, excelente: 0.4 },
@@ -124,35 +119,24 @@ export default function ReportesAdmin() {
     ]
   };
 
-  const printImage = (chartRef) => {
-    if (chartRef.current) {
-      chartRef.current.render();
-      chartRef.current.print();
-    }
-  };
-
   const htmlContent = (
     <div className="bg-white rounded p-4">
       <h3 className="text-2xl font-bold mb-2">Contenido de Reportes</h3>
       <div className="grid grid-cols-2 gap-4">
         <div>
           <div style={{ height: '400px' }}>
-            <CanvasJSChart options={optionsMovies} onRef={(ref) => (movieChartRef.current = ref)} />
-            <button onClick={() => printImage(movieChartRef)}>Exportar Gráfica 1</button>
+            <CanvasJSChart options={optionsMovies} />
           </div>
           <div style={{ height: '400px', marginTop: '2rem' }}>
-            <CanvasJSChart options={optionsMultiplex} onRef={(ref) => (multiplexChartRef.current = ref)} />
-            <button onClick={() => printImage(multiplexChartRef)}>Exportar Gráfica 2</button>
+            <CanvasJSChart options={optionsMultiplex} />
           </div>
         </div>
         <div>
           <div style={{ height: '400px' }}>
-            <CanvasJSChart options={optionsSnacks} onRef={(ref) => (snacksChartRef.current = ref)} />
-            <button onClick={() => printImage(snacksChartRef)}>Exportar Gráfica 3</button>
+            <CanvasJSChart options={optionsSnacks} />
           </div>
           <div style={{ height: '400px', marginTop: '2rem' }}>
-            <CanvasJSChart options={optionsMovieRating} onRef={(ref) => (movieRatingChartRef.current = ref)} />
-            <button onClick={() => printImage(movieRatingChartRef)}>Exportar Gráfica 4</button>
+            <CanvasJSChart options={optionsMovieRating} />
           </div>
         </div>
       </div>
@@ -160,14 +144,12 @@ export default function ReportesAdmin() {
   );
 
   return (
-    <>
-      <PDFGenerate 
-        htmlContent={htmlContent}
-        movieRatingData={movieRatingData} 
-        moviesData={moviesData} 
-        salesData={salesData} 
-        snacksData={snacksData} 
-      />
-    </>
+    <PDFGenerate 
+      htmlContent={htmlContent}
+      movieRatingData={movieRatingData} 
+      moviesData={moviesData} 
+      salesData={salesData} 
+      snacksData={snacksData} 
+    />
   );
 }
