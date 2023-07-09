@@ -1,14 +1,20 @@
-import React from 'react';
+import React, { useRef } from 'react';
+import CanvasJSReact from '@canvasjs/react-charts';
+import PDFGenerate from './PDFGenerate';
 
-var CanvasJSReact = require('@canvasjs/react-charts').default;
-var CanvasJSChart = CanvasJSReact.CanvasJSChart;
+const CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 export default function ReportesAdmin() {
+  const movieChartRef = useRef(null);
+  const multiplexChartRef = useRef(null);
+  const snacksChartRef = useRef(null);
+  const movieRatingChartRef = useRef(null);
+
   const movieRatingData = [
-    { label: 'Los Vengadores', pésima: 1, mala: 1, regular: 1, buena: 0.7, excelente: 0 },
-    { label: 'Joker', pésima: 1, mala: 1, regular: 1, buena: 1, excelente: 0.4 },
-    { label: 'Toy Story 4', pésima: 1, mala: 1, regular: 1, buena: 0.4, excelente: 0 },
-    { label: 'Alan Wake', pésima: 1, mala: 0.5, regular: 0, buena: 0, excelente: 0 }
+    { label: 'Los Vengadores', pesima: 1, mala: 1, regular: 1, buena: 0.7, excelente: 0 },
+    { label: 'Joker', pesima: 1, mala: 1, regular: 1, buena: 1, excelente: 0.4 },
+    { label: 'Toy Story 4', pesima: 1, mala: 1, regular: 1, buena: 0.4, excelente: 0 },
+    { label: 'Alan Wake', pesima: 1, mala: 0.5, regular: 0, buena: 0, excelente: 0 }
   ];
 
   const moviesData = [
@@ -89,7 +95,7 @@ export default function ReportesAdmin() {
         type: 'stackedColumn',
         name: 'Pésima',
         showInLegend: true,
-        dataPoints: movieRatingData.map((data) => ({ label: data.label, y: data.pésima }))
+        dataPoints: movieRatingData.map((data) => ({ label: data.label, y: data.pesima }))
       },
       {
         type: 'stackedColumn',
@@ -118,27 +124,50 @@ export default function ReportesAdmin() {
     ]
   };
 
-  return (
-    <div className="bg-white rounded p-4 shadow">
+  const printImage = (chartRef) => {
+    if (chartRef.current) {
+      chartRef.current.render();
+      chartRef.current.print();
+    }
+  };
+
+  const htmlContent = (
+    <div className="bg-white rounded p-4">
       <h3 className="text-2xl font-bold mb-2">Contenido de Reportes</h3>
       <div className="grid grid-cols-2 gap-4">
         <div>
           <div style={{ height: '400px' }}>
-            <CanvasJSChart options={optionsMovies} />
+            <CanvasJSChart options={optionsMovies} onRef={(ref) => (movieChartRef.current = ref)} />
+            <button onClick={() => printImage(movieChartRef)}>Exportar Gráfica 1</button>
           </div>
           <div style={{ height: '400px', marginTop: '2rem' }}>
-            <CanvasJSChart options={optionsMultiplex} />
+            <CanvasJSChart options={optionsMultiplex} onRef={(ref) => (multiplexChartRef.current = ref)} />
+            <button onClick={() => printImage(multiplexChartRef)}>Exportar Gráfica 2</button>
           </div>
         </div>
         <div>
           <div style={{ height: '400px' }}>
-            <CanvasJSChart options={optionsSnacks} />
+            <CanvasJSChart options={optionsSnacks} onRef={(ref) => (snacksChartRef.current = ref)} />
+            <button onClick={() => printImage(snacksChartRef)}>Exportar Gráfica 3</button>
           </div>
           <div style={{ height: '400px', marginTop: '2rem' }}>
-            <CanvasJSChart options={optionsMovieRating} />
+            <CanvasJSChart options={optionsMovieRating} onRef={(ref) => (movieRatingChartRef.current = ref)} />
+            <button onClick={() => printImage(movieRatingChartRef)}>Exportar Gráfica 4</button>
           </div>
         </div>
       </div>
     </div>
   );
-};
+
+  return (
+    <>
+      <PDFGenerate 
+        htmlContent={htmlContent}
+        movieRatingData={movieRatingData} 
+        moviesData={moviesData} 
+        salesData={salesData} 
+        snacksData={snacksData} 
+      />
+    </>
+  );
+}
