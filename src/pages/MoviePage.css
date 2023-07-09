@@ -14,3 +14,13 @@
 .titleMoviePage{
     font-size: 2.5rem;
 }
+
+.infoMovie{
+    display: flex;
+    flex-direction: row;
+}
+
+.iconMovie{
+    margin: auto 0;
+    margin-right: 3px;
+}

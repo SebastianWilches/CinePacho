@@ -12,6 +12,7 @@ export const SnacksPage = () => {
   const [snacks, setSnacks] = useState([]);
   const [loading, setLoading] = useState(true);
   const { selectedMultiplex_ID } = useContext(CineContext);
+  
 
   useEffect(() => {
     GET_Snacks(selectedMultiplex_ID);
@@ -39,7 +40,7 @@ export const SnacksPage = () => {
               />)
               :
               (snacks.map((snack, index) => {
-                return <SnackItem infoSnack={snack} key={index} />
+                return <SnackItem infoSnack={snack} key={index}/>
               }))
           }
         </div>

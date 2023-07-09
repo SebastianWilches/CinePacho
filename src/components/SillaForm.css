@@ -1,7 +1,30 @@
 .container-sillas{
-    display: flex;
+    /* display: flex;
     align-items: center;
     justify-content: center;
     gap: 30px;
-    flex-wrap: wrap;
+    flex-wrap: wrap; */
+
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    gap: 20px;
+}
+.btn-carrito{
+    background-color: green;
+    color: white;
+    padding: 6px;
+    display: flex;
+    flex-direction: row;
+
+    margin: auto;
+}
+
+.icon-carrito{
+    margin: auto;
+    padding-left: 3px;
+}
+
+.container-comprar{
+    display: flex;
+    flex-direction: row;
 }

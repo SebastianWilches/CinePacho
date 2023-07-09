@@ -7,10 +7,13 @@ import "./LoginForm.css";
 import { Navigate } from "react-router-dom";
 
 export default function LoginForm() {
-  const { register, handleSubmit } = useForm(); //State del form
-  const [credenciales1, setCredenciales1] = useState([]);
-  const { setInfoCliente, setTokenCliente, setAuth, infoCliente } = useContext(CineContext);
-  const urlBase = "http://localhost:3001/";
+
+    
+    const { register, handleSubmit } = useForm(); //State del form
+    const [credenciales1, setCredenciales1] = useState([]);
+    const { setInfoCliente, setTokenCliente, setIsLog, isLog, setAuth, infoCliente } = useContext(CineContext);
+    const urlBase = 'https://cinepachoapi.azurewebsites.net/';
+
 
   const POST_validarCredenciales = async (credenciales) => {
     const response = await fetch(`${urlBase}validarCredencialesSesion`, {
@@ -42,15 +45,17 @@ export default function LoginForm() {
       });
     }
 
-    if (data.mensaje === "Se ha iniciado sesion correctamente") {
-      setInfoCliente(data.usuario);
-      setTokenCliente(data.token);
-      setAuth(data.auth)
-      console.log(data);
-      Swal.fire({
-        title: "¡Usuario logeado!",
-        icon: "success",
-      });
+        if (data.mensaje == 'Se ha iniciado sesion correctamente') {
+            setInfoCliente(data.usuario);
+            setTokenCliente(data.token);
+            setIsLog(true);
+            setAuth(data.auth)
+            Swal.fire({
+                title: "¡Usuario logeado!",
+                icon: "success",
+            });
+        }
+
     }
   };
 

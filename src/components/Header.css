@@ -1,5 +1,7 @@
 .PrincipalImageContainer {
-    background-image: url('../img/headerLandingPage.jpg');
+    /* background-image: url('../../public/headerLandingPage.jpg'); */
+    background-image: url('https://cinepachoapi.azurewebsites.net/uploads/home.jpeg');
+    
     background-position: center;
     width: 100%;
     height: 35rem;
