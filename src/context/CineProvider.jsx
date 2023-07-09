@@ -1,5 +1,5 @@
-import { useState, useContext } from "react"
-import { CineContext } from "./CineContext"
+import { useState, useContext } from "react";
+import { CineContext } from "./CineContext";
 
 export const CineProvider = ({ children }) => {
 
@@ -12,6 +12,7 @@ export const CineProvider = ({ children }) => {
     const [listaCompraID, setListaCompraID] = useState([]); //Aquí se almacena todas las compras que haga un cliente
     const [isLog, setIsLog] = useState(false);
     const [selectedSnacks, setSelectedSnacks] = useState([]);
+    const [auth, setAuth] = useState(false);
 
 
 
@@ -33,7 +34,9 @@ export const CineProvider = ({ children }) => {
                 setIsLog,
                 isLog,
                 selectedSnacks,
-                setSelectedSnacks
+                setSelectedSnacks,
+                setAuth,
+                auth,
             }
         }>
             {children}

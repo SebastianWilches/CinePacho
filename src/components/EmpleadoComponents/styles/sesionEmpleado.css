@@ -1,0 +1,171 @@
+.Empleado-div-contenedor{
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.div-empleado-control-sesion{
+    display: flex;
+    gap: 15px;
+}
+
+.empleado-div-control{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 7px;
+}
+
+.funcion-form{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 80%;
+    padding: 35px;
+    gap: 16px;
+}
+
+.funcion-form-div{
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+}
+
+.funcion-form-div>select, input{
+    width: 100%;
+    padding: 16px 10px;
+}
+
+.form-div-input-file{
+    background-color: white;
+    width: 100%;
+}
+
+.empleado-span-datos-title{
+    font-weight: bold;
+}
+
+.div-silla-seleccion-empleado{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.empleado-icon-silla{
+    font-size: 40px;
+}
+
+.empleado-div-listado-sillas-sala{
+    /* background-color: aqua; */
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: center;
+}
+
+.empleado-silla-disponible{
+    color: var(--primary);
+}
+
+.empleado-silla-ocupada{
+    color: var(--secondary);
+}
+
+.empleado-silla-tomada{
+    color: var(--tertiary)
+}
+
+.empleado-div-lista-snacks{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.empleado-div-snack{
+    min-width: fit-content;
+    outline: 1px solid var(--primary);
+    border-radius: 5px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+}
+
+.empleado-div-snack>img{
+    display: block;
+    width: 200px;
+    object-fit: scale-down;
+    max-height: 200px;
+}
+
+.empleado-div-snack>div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.empleado-div-snack>div>div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    font-size: 25px;
+}
+
+.btn-empleado-snack{
+    cursor: pointer;
+}
+
+.btn-add-cantidad{
+    color: var(--primary);
+}
+
+.btn-minus-cantidad{
+    color: var(--tertiary);
+}
+
+.btn-agrega-producto-empleado{
+    background-color: var(--primary);
+    margin: 0;
+}
+
+.btn-elimina-producto-empleado{
+    background-color: var(--tertiary);
+    margin: 0;
+}
+
+.empleado-buttons-compra{
+    border-top: 1px solid var(--secondary);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.btn-compra-empleado-crear{
+
+}
+
+.btn-compra-empleado-pagar{
+    background-color: var(--primary);
+}
+
+.btn-compra-empleado-cancelar{
+    background-color: var(--tertiary);
+}
+
+.empleado-btn-form{
+    cursor: pointer;
+}

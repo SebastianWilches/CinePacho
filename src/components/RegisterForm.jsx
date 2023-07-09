@@ -7,7 +7,7 @@ import './RegisterForm.css'
 export default function RegisterForm() {
     //State del form
     const { register, handleSubmit } = useForm();
-    const urlBase = 'https://cinepachoapi.azurewebsites.net/';
+    const urlBase = 'http://localhost:3001/';
 
     const POST_RegistrarSesionCliente = async (user) => {
         try {
