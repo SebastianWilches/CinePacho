@@ -3,7 +3,8 @@ import { Link, Outlet } from "react-router-dom";
 import { CineContext } from "../../../context/CineContext";
 
 const HeaderEmpleado = ({ mostrar }) => {
-  const { setInfoCliente, setTokenCliente, setAuth } = useContext(CineContext);
+  const { setInfoCliente, setTokenCliente, setAuth, isLog } =
+    useContext(CineContext);
 
   const handleButton = (e) => {
     console.log(e.target.classList[1]);
@@ -12,9 +13,10 @@ const HeaderEmpleado = ({ mostrar }) => {
 
   const handleButtonCerrarSesion = (e) => {
     //TODO eliminar datos de sesion
-    setInfoCliente(null);
+    setInfoCliente([]);
     setAuth(false);
-    setTokenCliente(null);
+    setTokenCliente([]);
+    isLog(false);
   };
 
   return (
