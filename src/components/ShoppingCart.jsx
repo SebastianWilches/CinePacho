@@ -78,7 +78,7 @@ export default function ShoppingCart() {
       }
     })
     const data = await response.json();
-    window.open(data.urlPago, '_blank');ñ
+    window.open(data.urlPago, '_blank');
     console.log('POST_PagoPasarela', data);
   }
 

@@ -8,7 +8,7 @@ import { CineContext } from '../context/CineContext';
 
 import './HomePage.css'
 
-import img from '../img/Movie.png'
+// import img from '../../public/Movie.png'
 import star from '../img/Star.png'
 
 export const HomePage = () => {
@@ -38,7 +38,8 @@ export const HomePage = () => {
         <h2 className='title-container'>¡Encuentra los mejores estrenos aquí!</h2>
         <section>
           <article className='container--FeaturedMovie'>
-            <img src={img} alt="Poster pelicula destacada" className='imgFeaturedMovie' />
+            <div alt="Poster pelicula destacada" className='imgFeaturedMovie' />
+            {/* <img src={img} alt="Poster pelicula destacada" className='imgFeaturedMovie' /> */}
             <div>
               <h3>WALK ALONE</h3>
               <p>“Un exitoso psicólogo llamado David se ve envuelto en una serie de eventos misteriosos después de que una de sus pacientes, Sarah, desaparece sin dejar rastro. A medida que David profundiza en su investigación para encontrarla, comienza a descubrir secretos oscuros y perturbadores sobre la vida de Sarah y la identidad de sus otros pacientes.”</p>
@@ -66,12 +67,14 @@ export const HomePage = () => {
                 <img src={star} alt="Icono Estrella" className='imgStar' />
               </div>
             </div>
-            <img src={img} alt="Poster pelicula destacada" className='imgFeaturedMovie' />
+            <div alt="Poster pelicula destacada" className='imgFeaturedMovie' />
+            {/* <img src={img} alt="Poster pelicula destacada" className='imgFeaturedMovie' /> */}
           </article>
 
 
           <article className='container--FeaturedMovie'>
-            <img src={img} alt="Poster pelicula destacada" className='imgFeaturedMovie' />
+          <div alt="Poster pelicula destacada" className='imgFeaturedMovie' />
+            {/* <img src={img} alt="Poster pelicula destacada" className='imgFeaturedMovie' /> */}
             <div>
               <h3>WALK ALONE</h3>
               <p>“Un exitoso psicólogo llamado David se ve envuelto en una serie de eventos misteriosos después de que una de sus pacientes, Sarah, desaparece sin dejar rastro. A medida que David profundiza en su investigación para encontrarla, comienza a descubrir secretos oscuros y perturbadores sobre la vida de Sarah y la identidad de sus otros pacientes.”</p>

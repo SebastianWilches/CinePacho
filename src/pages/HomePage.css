@@ -1,52 +1,63 @@
-body{
+body {
     background-color: var(--background);
 }
-p{
+
+p {
     text-align: justify;
 }
-h2{
+
+h2 {
     font-size: 2rem;
 }
 
-.container{
+.container {
     width: min(80%, 110rem);
     margin: 2rem auto;
 }
 
-.container>.title-container{
+.container>.title-container {
     text-align: center;
     margin-bottom: 5rem;
 }
 
-.container--FeaturedMovie{
+.container--FeaturedMovie {
     display: grid;
     grid-template-columns: 1fr 2fr 1fr;
     gap: 1rem;
-    
+
     place-content: center;
 }
 
-.imgFeaturedMovie{
-    /* background-image: url('../img/Movie.png'); */
+.imgFeaturedMovie {
+    background-image: url('../../public/Movie.png');
     width: 100%;
+
+
+    background-image: no-repeat;
+    background-image: fixed;
+    background-image: center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
 
-.container--star{
+.container--star {
     display: flex;
-    flex-direction: row;  
-    gap: 0.2rem;  
+    flex-direction: row;
+    gap: 0.2rem;
     justify-content: center;
 }
 
-.imgStar{
+.imgStar {
     height: 1rem;
 }
 
-.imgFeaturedMovie{
+.imgFeaturedMovie {
     height: 30rem;
 }
 
-.container-selectMultiplex{
+.container-selectMultiplex {
     display: flex;
     flex-direction: column;
 }
