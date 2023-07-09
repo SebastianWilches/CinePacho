@@ -12,7 +12,6 @@ import { MoviePage } from "./pages/MoviePage";
 import CrearConsumible from "./components/EmpleadoComponents/containers/CrearConsumible";
 import { CineContext } from "./context/CineContext";
 import RutasProtegidaAdmin from "./security/RutasProtegidasAdmin";
-import { MoviePage } from './pages/MoviePage';
 import { AdminPage } from './pages/AdminPage';
 
 
