@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form'
 import './SnackItem.css'
 import { CineContext } from '../context/CineContext';
 
-export default function SnackItem({ infoSnack}) {
+export default function SnackItem({ infoSnack }) {
 
   const { register, handleSubmit } = useForm(); //State del form
   const urlBase = 'https://cinepachoapi.azurewebsites.net/';
@@ -90,7 +90,7 @@ export default function SnackItem({ infoSnack}) {
       idCompra,
       idSnack: infoSnack.idSnack,
       cantidad: parseInt(snack.cantidad),
-      nombre: infoSnack.nombresnack, 
+      nombre: infoSnack.nombresnack,
 
     }
     setSelectedSnacks(selectedSnacks => selectedSnacks.concat(objectSnackCarrito));
@@ -103,17 +103,18 @@ export default function SnackItem({ infoSnack}) {
       <div className='CardInfo'>
         <h3 className='CardTitle'>{infoSnack.nombresnack}</h3>
         <p className='PrecioSnack'>${infoSnack.precio}</p>
-        <form onSubmit={handleSubmit((data) => {
-          console.log('asd');
-          btnComprarSnack(data);
-        })}>
-          <input
-            {...register('cantidad')}
-            placeholder='Cantidad'
-            required>
-          </input>
-          <input className='CardBtn' type='submit'></input>
-        </form>
+        <div className='snackBuy' >
+          <form onSubmit={handleSubmit((data) => {
+            btnComprarSnack(data);
+          })}>
+            <input
+              {...register('cantidad')}
+              placeholder='Cantidad'
+              required>
+            </input>
+            <input className='CardBtn' type='submit'></input>
+          </form>
+        </div>
       </div>
 
 

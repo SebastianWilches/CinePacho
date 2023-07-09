@@ -122,7 +122,8 @@ export default function ShoppingCart() {
             !listaCompraID ? (<></>) : listaCompraID.map(item => {
               return (
                 <Card.Body>
-                  <p><b>Factura: </b>{item.idCompra} <b>Descripción: </b>{item.descripcion}</p>
+                  <p><b>Factura: </b>{item.idCompra}</p>
+                  <p><b>Descripción: </b>{item.descripcion}</p>
                 </Card.Body>
               )
             })
