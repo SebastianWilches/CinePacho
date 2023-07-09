@@ -79,7 +79,7 @@ export default function ReportesAdmin() {
       excelente: arr[4]
     })))
 
-    console.log(movieRatingData);
+    // console.log(movieRatingData);
 
     // setMovieRatingData(movieRatingDataa);
   }
@@ -131,10 +131,12 @@ export default function ReportesAdmin() {
   // ];
 
   const moviesData = [
-    { label: 'Multiplex A', y: 20 },
-    { label: 'Multiplex B', y: 30 },
-    { label: 'Multiplex C', y: 70 },
-    { label: 'Multiplex D', y: 25 }
+    { label: 'Multiplex Titán', y: 20 },
+    { label: 'Multiplex Unicentro', y: 30 },
+    { label: 'Multiplex Plaza Central', y: 70 },
+    { label: 'Multiplex Gran Estación', y: 35 },
+    { label: 'Multiplex Eembajador (centro)', y: 22 },
+    { label: 'Las Américas (centro)', y: 15 }
   ];
 
   const optionsMovies = {

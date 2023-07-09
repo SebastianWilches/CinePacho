@@ -1,12 +1,24 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import GenerarEmpleado from '../components/CreateEmpleado'
 import ReportesAdmin from '../components/ReportesAdmin'
 
 import './AdminPage.css'
+import { CineContext } from '../context/CineContext';
 
 export const AdminPage = () => {
     const [selectedOption, setSelectedOption] = useState('');
-  
+
+    const { setInfoCliente, setTokenCliente, setAuth, setIsLog } =
+    useContext(CineContext);
+    
+    const handleButtonCerrarSesion = (e) => {
+      //TODO eliminar datos de sesion
+      setInfoCliente([]);
+      setAuth(false);
+      setTokenCliente([]);
+      setIsLog(false);
+    };
+
     const handleOptionClick = (option) => {
       setSelectedOption(option);
     };
@@ -21,6 +33,9 @@ export const AdminPage = () => {
             </li>
             <li>
               <a href="#reportes" className="block hover:text-gray-300" onClick={() => handleOptionClick('reportes')}>Reportes</a>
+            </li>
+            <li>
+              <a href="#reportes" className="block hover:text-gray-300" onClick={() => handleButtonCerrarSesion()}>Cerrar sesión</a>
             </li>
           </ul>
         </div>

@@ -3,7 +3,7 @@ import { Link, Outlet } from "react-router-dom";
 import { CineContext } from "../../../context/CineContext";
 
 const HeaderEmpleado = ({ mostrar }) => {
-  const { setInfoCliente, setTokenCliente, setAuth, isLog } =
+  const { setInfoCliente, setTokenCliente, setAuth, setIsLog } =
     useContext(CineContext);
 
   const handleButton = (e) => {
@@ -16,7 +16,7 @@ const HeaderEmpleado = ({ mostrar }) => {
     setInfoCliente([]);
     setAuth(false);
     setTokenCliente([]);
-    isLog(false);
+    setIsLog(false);
   };
 
   return (
