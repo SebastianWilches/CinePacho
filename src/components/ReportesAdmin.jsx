@@ -6,7 +6,7 @@ const CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 export default function ReportesAdmin() {
   const urlBase = 'https://cinepachoapi.azurewebsites.net/';
-  //const [movieRatingData, setMovieRatingData] = useState(null); fallando
+  const [movieRatingData, setMovieRatingData] = useState([]);
   const [jsonData, setJsonData] = useState(null);
   const [salesData, setSalesData] = useState(null);
   const [snacksData, setSnacksData] = useState(null);
@@ -15,7 +15,7 @@ export default function ReportesAdmin() {
     GET_peliculasMasVistas();
     GET_snacksMasVendidos();
     GET_valoracionPeliculas();
-  })
+  },[])
 
   const GET_peliculasMasVistas = async () => {
         const response = await fetch(`${urlBase}peliculasMasVistas`, {
@@ -55,6 +55,8 @@ export default function ReportesAdmin() {
         method: 'GET'
     })
     const dataGET = await response.json();
+    console.log(dataGET);
+    
     const dataJSON = JSON.stringify(dataGET, null, 2);
     const parsedData = JSON.parse(dataJSON);
 
@@ -68,18 +70,25 @@ export default function ReportesAdmin() {
       label: item.titulo
     }))
 
-    const movieRatingData = resultado.map((arr, index) => ({
+    setMovieRatingData(resultado.map((arr, index) => ({
       label: labelMovie[index].label,
       pesima: arr[0],
       mala: arr[1],
       regular: arr[2],
       buena: arr[3],
       excelente: arr[4]
-    }));
+    })))
 
     console.log(movieRatingData);
-    //setMovieRatingData(movieRatingData); el Set
+
+    // setMovieRatingData(movieRatingDataa);
   }
+
+
+  useEffect(() => {
+    console.log(movieRatingData);
+  }, [movieRatingData])
+  
 
   const GET_ventasCine = async () => {
     const response = await fetch(`${urlBase}ventasCine`, {
@@ -114,12 +123,12 @@ export default function ReportesAdmin() {
     }
   };
 
-  const movieRatingData = [
-    { label: 'Los Vengadores', pesima: 1, mala: 1, regular: 1, buena: 0.7, excelente: 0 },
-    { label: 'Joker', pesima: 1, mala: 1, regular: 1, buena: 1, excelente: 0.4 },
-    { label: 'Toy Story 4', pesima: 1, mala: 1, regular: 1, buena: 0.4, excelente: 0 },
-    { label: 'Alan Wake', pesima: 1, mala: 0.5, regular: 0, buena: 0, excelente: 0 }
-  ];
+  // const movieRatingData = [
+  //   { label: 'Los Vengadores', pesima: 1, mala: 1, regular: 1, buena: 0.7, excelente: 0 },
+  //   { label: 'Joker', pesima: 1, mala: 1, regular: 1, buena: 1, excelente: 0.4 },
+  //   { label: 'Toy Story 4', pesima: 1, mala: 1, regular: 1, buena: 0.4, excelente: 0 },
+  //   { label: 'Alan Wake', pesima: 1, mala: 0.5, regular: 0, buena: 0, excelente: 0 }
+  // ];
 
   const moviesData = [
     { label: 'Multiplex A', y: 20 },
