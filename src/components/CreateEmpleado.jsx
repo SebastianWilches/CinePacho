@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-export default function GenerarEmpleado() {
+export default function CreateEmpleado() {
   const [employees, setEmployees] = useState([]);
   const [newEmployee, setNewEmployee] = useState({
     name: '',
