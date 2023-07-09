@@ -29,7 +29,8 @@ h2 {
 }
 
 .imgFeaturedMovie {
-    background-image: url('../../public/Movie.png');
+    /* background-image: url('../../public/Movie.png'); */
+    background-image: url('https://cinepachoapi.azurewebsites.net/uploads/alone.jpeg');
     width: 100%;
 
 
