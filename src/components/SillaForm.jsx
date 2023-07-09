@@ -19,6 +19,7 @@ export default function SillaForm({ idPelicula }) {
     const [listFunciones, setListFunciones] = useState([]);
     const [listSillasDisponibles, setListSillasDisponibles] = useState([]); //Mapeo completo
     const [listSillasSeleccionadas, setListSillasSeleccionadas] = useState([]);
+    const [peliculaID, setPeliculaID] = useState();
 
     //Contexto
     const { selectedMultiplex_ID, infoCliente, tokenCliente, setListaCompraID, listaCompraID, isLog } = useContext(CineContext);
@@ -35,6 +36,7 @@ export default function SillaForm({ idPelicula }) {
 
         // console.log(pelicula);
         setListFunciones(pelicula);
+        setPeliculaID(pelicula.pelicula_id)
         setLoading(false);
     }
 
@@ -66,7 +68,8 @@ export default function SillaForm({ idPelicula }) {
         let factura = {
             idCompra,
             descripcion: "Tickets de película",
-            listSillasSeleccionadas
+            listSillasSeleccionadas,
+            idPelicula
         }
 
         setListaCompraID(listaCompraID => listaCompraID.concat(factura))
@@ -87,7 +90,8 @@ export default function SillaForm({ idPelicula }) {
         let factura = {
             idCompra,
             descripcion: "Tickets de película",
-            listSillasSeleccionadas
+            listSillasSeleccionadas,
+            idPelicula
         }
 
         setListaCompraID(listaCompraID => listaCompraID.concat(factura))

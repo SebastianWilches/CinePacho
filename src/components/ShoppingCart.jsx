@@ -6,9 +6,43 @@ import './ShoppingCart.css'
 import Swal from 'sweetalert2';
 
 export default function ShoppingCart() {
-  const { openShoppingCart, setOpenShoppingCart, listaCompraID, setListaCompraID, isLog, selectedSnacks, setSelectedSnacks } = useContext(CineContext);
+  const { openShoppingCart, setOpenShoppingCart, listaCompraID, setListaCompraID, isLog, selectedSnacks, setSelectedSnacks, infoCliente } = useContext(CineContext);
   const urlBase = 'https://cinepachoapi.azurewebsites.net/';
 
+  const calificarPelicula = (idPelicula) => {
+    Swal.fire({
+      title: "¡Califica la película con una puntuación del 1 al 5!",
+      input: "number",
+      inputAttributes: {
+          autocapitalize: "off"
+      },
+      showCancelButton: true,
+      confirmButtonText: "Ingresar",
+      showLoaderOnConfirm: true,
+      preConfirm: (calificacion) => {
+          
+        let objectCalificar = {
+          idCliente: infoCliente.cliente_id,
+          idPelicula: idPelicula,
+          puntaje:calificacion,
+        }
+        console.log('Objecto a calificar', objectCalificar);
+          POST_CalificarPelicula(objectCalificar);
+      }
+  });
+  }
+
+  const POST_CalificarPelicula = async (object) => {
+    const response = await fetch(`${urlBase}calificarPelicula`, {
+      method: 'POST',
+      body: JSON.stringify(object),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    const data = await response.json()
+    console.log(data);
+  }
 
   const POST_ProcesarCompra = async (object) => {
     const response = await fetch(`${urlBase}procesarCompra`, {
@@ -42,6 +76,9 @@ export default function ShoppingCart() {
         pagoPuntos: [],
       }
       POST_ProcesarCompra(objectCompra);
+      if(isLog){
+        calificarPelicula(item.idPelicula);
+      }
     })
     selectedSnacks.map(item => {
       let objectCompra = {
@@ -51,10 +88,10 @@ export default function ShoppingCart() {
       }
       POST_ProcesarCompra(objectCompra);
     })
-    Swal.fire({
-      title: "¡Pago completado!",
-      icon: "success",
-    });
+    // Swal.fire({
+    //   title: "¡Pago completado!",
+    //   icon: "success",
+    // });
 
     // Limpiar carrito
     setListaCompraID([]);
