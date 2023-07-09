@@ -267,7 +267,22 @@ const CrearCompraEmpleado = ({ accion }) => {
   };
 
   const handlePagarCompra = () => {
-    console.log(datosCompra.idCompra);
+    let obtenerLinkPagoURL = "http://localhost:3001/realizarPago";
+    axios
+      .post(obtenerLinkPagoURL, {
+        idMultiplex: datosCompra.idMultiplex,
+        arregloCompras: [datosCompra.idCompra]
+      })
+      .then((response) => {
+        // Manejar la respuesta del servidor
+        console.log(response.data);
+        // setListaSillasFuncion(response.data.listaSillasDisponibles);
+        window.open(response.data.urlPago, '_blank')
+      })
+      .catch((error) => {
+        // Manejar errores
+        console.log(error);
+      });
   };
 
   return (
@@ -358,6 +373,7 @@ const CrearCompraEmpleado = ({ accion }) => {
           >
             Pagar Compra
           </span>
+          
           <span
             className="button-submit empleado-btn-form btn-compra-empleado-cancelar"
             onClick={handleCancelarCompra}

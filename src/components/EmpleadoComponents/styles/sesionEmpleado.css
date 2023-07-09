@@ -165,3 +165,7 @@
 .btn-compra-empleado-cancelar{
     background-color: var(--tertiary);
 }
+
+.empleado-btn-form{
+    cursor: pointer;
+}
