@@ -87,6 +87,15 @@ export default function RegisterForm() {
                             required>
                         </input>
                     </div>
+                    <div>
+                        <label>Imagen:</label>
+                        <input
+                            {...register('contrasena')}
+                            // placeholder='Contraseña'
+                            type='file'
+                            required>
+                        </input>
+                    </div>
 
                 </div>
 

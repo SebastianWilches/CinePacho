@@ -4,11 +4,12 @@ import Footer from '../components/Footer'
 import { Modal, Button, Card } from '@rewind-ui/core';
 import { useForm } from 'react-hook-form'
 import { CineContext } from '../context/CineContext';
+import { AiFillStar } from "react-icons/ai";
 
 
 import './HomePage.css'
 
-import img from '../img/Movie.png'
+// import img from '../../public/Movie.png'
 import star from '../img/Star.png'
 
 export const HomePage = () => {
@@ -38,16 +39,17 @@ export const HomePage = () => {
         <h2 className='title-container'>¡Encuentra los mejores estrenos aquí!</h2>
         <section>
           <article className='container--FeaturedMovie'>
-            <img src={img} alt="Poster pelicula destacada" className='imgFeaturedMovie' />
+            <div alt="Poster pelicula destacada" className='imgFeaturedMovie' />
+            {/* <img src={img} alt="Poster pelicula destacada" className='imgFeaturedMovie' /> */}
             <div>
               <h3>WALK ALONE</h3>
-              <p>“Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam vitae tincidunt tellus. Donec semper odio sit amet ante efficitur tristique. Mauris volutpat convallis dui dictum maximus. Phasellus elementum ac tortor ut varius. Curabitur et tempus sapien, quis accumsan ante. Quisque lacus eros, molestie et nibh eu, tempor hendrerit metus.”</p>
+              <p>“Un exitoso psicólogo llamado David se ve envuelto en una serie de eventos misteriosos después de que una de sus pacientes, Sarah, desaparece sin dejar rastro. A medida que David profundiza en su investigación para encontrarla, comienza a descubrir secretos oscuros y perturbadores sobre la vida de Sarah y la identidad de sus otros pacientes.”</p>
               <div className='container--star'>
-                <img src={star} alt="Icono Estrella" className='imgStar' />
-                <img src={star} alt="Icono Estrella" className='imgStar' />
-                <img src={star} alt="Icono Estrella" className='imgStar' />
-                <img src={star} alt="Icono Estrella" className='imgStar' />
-                <img src={star} alt="Icono Estrella" className='imgStar' />
+                <AiFillStar className='imgStar' />
+                <AiFillStar className='imgStar' />
+                <AiFillStar className='imgStar' />
+                <AiFillStar className='imgStar' />
+                <AiFillStar className='imgStar' />
               </div>
             </div>
             <div></div>
@@ -57,30 +59,32 @@ export const HomePage = () => {
             <div></div>
             <div>
               <h3>WALK ALONE</h3>
-              <p>“Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam vitae tincidunt tellus. Donec semper odio sit amet ante efficitur tristique. Mauris volutpat convallis dui dictum maximus. Phasellus elementum ac tortor ut varius. Curabitur et tempus sapien, quis accumsan ante. Quisque lacus eros, molestie et nibh eu, tempor hendrerit metus.”</p>
+              <p>“Un exitoso psicólogo llamado David se ve envuelto en una serie de eventos misteriosos después de que una de sus pacientes, Sarah, desaparece sin dejar rastro. A medida que David profundiza en su investigación para encontrarla, comienza a descubrir secretos oscuros y perturbadores sobre la vida de Sarah y la identidad de sus otros pacientes.”</p>
               <div className='container--star'>
-                <img src={star} alt="Icono Estrella" className='imgStar' />
-                <img src={star} alt="Icono Estrella" className='imgStar' />
-                <img src={star} alt="Icono Estrella" className='imgStar' />
-                <img src={star} alt="Icono Estrella" className='imgStar' />
-                <img src={star} alt="Icono Estrella" className='imgStar' />
+                <AiFillStar className='imgStar' />
+                <AiFillStar className='imgStar' />
+                <AiFillStar className='imgStar' />
+                <AiFillStar className='imgStar' />
+                <AiFillStar className='imgStar' />
               </div>
             </div>
-            <img src={img} alt="Poster pelicula destacada" className='imgFeaturedMovie' />
+            <div alt="Poster pelicula destacada" className='imgFeaturedMovie' />
+            {/* <img src={img} alt="Poster pelicula destacada" className='imgFeaturedMovie' /> */}
           </article>
 
 
           <article className='container--FeaturedMovie'>
-            <img src={img} alt="Poster pelicula destacada" className='imgFeaturedMovie' />
+            <div alt="Poster pelicula destacada" className='imgFeaturedMovie' />
+            {/* <img src={img} alt="Poster pelicula destacada" className='imgFeaturedMovie' /> */}
             <div>
               <h3>WALK ALONE</h3>
-              <p>“Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam vitae tincidunt tellus. Donec semper odio sit amet ante efficitur tristique. Mauris volutpat convallis dui dictum maximus. Phasellus elementum ac tortor ut varius. Curabitur et tempus sapien, quis accumsan ante. Quisque lacus eros, molestie et nibh eu, tempor hendrerit metus.”</p>
+              <p>“Un exitoso psicólogo llamado David se ve envuelto en una serie de eventos misteriosos después de que una de sus pacientes, Sarah, desaparece sin dejar rastro. A medida que David profundiza en su investigación para encontrarla, comienza a descubrir secretos oscuros y perturbadores sobre la vida de Sarah y la identidad de sus otros pacientes.”</p>
               <div className='container--star'>
-                <img src={star} alt="Icono Estrella" className='imgStar' />
-                <img src={star} alt="Icono Estrella" className='imgStar' />
-                <img src={star} alt="Icono Estrella" className='imgStar' />
-                <img src={star} alt="Icono Estrella" className='imgStar' />
-                <img src={star} alt="Icono Estrella" className='imgStar' />
+                <AiFillStar className='imgStar' />
+                <AiFillStar className='imgStar' />
+                <AiFillStar className='imgStar' />
+                <AiFillStar className='imgStar' />
+                <AiFillStar className='imgStar' />
               </div>
             </div>
             <div></div>
@@ -92,13 +96,12 @@ export const HomePage = () => {
 
       <Modal closeOnEscape={false} overlayCloseOnClick="false" position="center" size="md" open={open} onClose={() => setOpen(false)}>
         <Card>
-          <Card.Header>Selecciona tu multiplex</Card.Header>
+          <Card.Header><b>Selecciona tu multiplex</b></Card.Header>
           <Card.Body>
-            <form className='container-loginForm' onSubmit={handleSubmit((data) => {
+            <form className='container-selectMultiplex' onSubmit={handleSubmit((data) => {
               setSelectedMultiplex_ID(data.selectedMultiplex_ID)
               setOpen(false);
             })}>
-              <label>Nombre multiplex: </label>
               <select {...register("selectedMultiplex_ID", { required: true })}>
                 {
                   listaMultiplex.map((multi, index) => {

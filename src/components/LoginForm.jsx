@@ -9,7 +9,7 @@ export default function LoginForm() {
     
     const { register, handleSubmit } = useForm(); //State del form
     const [credenciales1, setCredenciales1] = useState([]);
-    const { setInfoCliente, setTokenCliente } = useContext(CineContext);
+    const { setInfoCliente, setTokenCliente, setIsLog, isLog } = useContext(CineContext);
     const urlBase = 'https://cinepachoapi.azurewebsites.net/';
 
     const POST_validarCredenciales = async (credenciales) => {
@@ -44,6 +44,7 @@ export default function LoginForm() {
         if (data.mensaje == 'Se ha iniciado sesion correctamente') {
             setInfoCliente(data.usuario);
             setTokenCliente(data.token);
+            setIsLog(true);
             Swal.fire({
                 title: "¡Usuario logeado!",
                 icon: "success",

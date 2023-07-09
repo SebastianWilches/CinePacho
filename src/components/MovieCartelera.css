@@ -5,6 +5,7 @@
 
 .imgMovie {
     width: 20rem;
+    height: 30rem;
     border-radius: 10px;
 }
 
@@ -13,3 +14,7 @@
     text-align: center;
 }
 
+.imgStarMovie{
+    height: 1rem;
+    margin: auto 0;
+}
