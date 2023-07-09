@@ -6,7 +6,7 @@ import './ShoppingCart.css'
 import Swal from 'sweetalert2';
 
 export default function ShoppingCart() {
-  const { openShoppingCart, setOpenShoppingCart, listaCompraID, setListaCompraID, isLog } = useContext(CineContext);
+  const { openShoppingCart, setOpenShoppingCart, listaCompraID, setListaCompraID, isLog, selectedSnacks, setSelectedSnacks } = useContext(CineContext);
   const urlBase = 'https://cinepachoapi.azurewebsites.net/';
 
 
@@ -43,6 +43,14 @@ export default function ShoppingCart() {
       }
       POST_ProcesarCompra(objectCompra);
     })
+    selectedSnacks.map(item => {
+      let objectCompra = {
+        idCompra: item.idCompra,
+        respuestaPasarela: true,
+        pagoPuntos: [],
+      }
+      POST_ProcesarCompra(objectCompra);
+    })
     Swal.fire({
       title: "¡Pago completado!",
       icon: "success",
@@ -50,10 +58,19 @@ export default function ShoppingCart() {
 
     // Limpiar carrito
     setListaCompraID([]);
+    setSelectedSnacks([]);
   }
 
   const btnCancelarPago = () => {
+    // TICKETS DE CINE
     listaCompraID.map(item => {
+      let objectCompra = {
+        idCompra: item.idCompra,
+      }
+      POST_CancelarCompra(objectCompra);
+    })
+    // SNACKS
+    selectedSnacks.map(item => {
       let objectCompra = {
         idCompra: item.idCompra,
       }
@@ -64,8 +81,11 @@ export default function ShoppingCart() {
       icon: "warning",
     });
 
+
+
     // Limpiar carrito
     setListaCompraID([]);
+    setSelectedSnacks([]);
   }
 
   return (
@@ -83,6 +103,21 @@ export default function ShoppingCart() {
             </Button>
           </Card.Header>
 
+
+          {/* Renderizar todos los tickets de cine */}
+          {
+            !selectedSnacks ? (<></>) : selectedSnacks.map(item => {
+              return (
+                <Card.Body>
+                  <p><b>Factura: </b>{item.idCompra}</p>
+                  <p><b>Descripción: </b>{item.nombre}</p>
+                  <p><b>Cantidad: </b>{item.cantidad}</p>
+                </Card.Body>
+              )
+            })
+          }
+
+          {/* Renderizar todos los snacks */}
           {
             !listaCompraID ? (<></>) : listaCompraID.map(item => {
               return (
@@ -92,6 +127,7 @@ export default function ShoppingCart() {
               )
             })
           }
+
 
           <Card.Footer>
             <div className="flex w-full space-x-2">
