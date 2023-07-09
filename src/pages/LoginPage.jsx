@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import LoginForm from '../components/LoginForm'
 
 
-import perfil from '../img/Perfil.png'
+// import perfil from '../img/Perfil.png'
 import './LoginPage.css'
 
 export const LoginPage = () => {
@@ -11,7 +11,8 @@ export const LoginPage = () => {
     <div className='div-contenedor-login'>
       <section className='container-loginPage'>
         <aside className='header-loginPage'>
-          <img src={perfil} alt="Imagen perfil login" className='imgLogin' />
+          <div alt="Imagen perfil login" className='imgLogin' />
+          {/* <img src={perfil} alt="Imagen perfil login" className='imgLogin' /> */}
         </aside>
         <article className='body-loginPage'>
           <p className='titleLoginForm'>ÚNETE A CINEPACHO</p>

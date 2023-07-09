@@ -73,3 +73,12 @@
     padding: 1rem 1rem 0 0;
     color: var(--white);
 }
+
+.snackBuy{
+    grid-area: 2 / 1 / 3 / 3;
+    justify-self: center;
+}
+
+.snackBuy > form > input{
+    width: 100%;
+}
