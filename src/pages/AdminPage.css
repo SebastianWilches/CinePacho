@@ -1,0 +1,92 @@
+.container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  h1 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  /* Estilos del panel de superadministrador */
+  .super-admin-panel {
+    background-color: #f7fafc;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .panel-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 16px;
+  }
+  
+  .panel-content {
+    margin-bottom: 20px;
+  }
+  
+  .panel-content label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 8px;
+  }
+  
+  .panel-content input,
+  .panel-content select {
+    width: 100%;
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+  }
+  
+  .panel-content button {
+    background-color: #3490dc;
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .employee-list {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 8px;
+    background-color: #fff;
+  }
+  
+  .employee-list-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+  
+  .employee-list-item .employee-info {
+    flex-grow: 1;
+  }
+  
+  .employee-list-item .employee-info p {
+    margin: 4px 0;
+  }
+  
+  .employee-list-item .employee-info p:first-child {
+    font-weight: bold;
+    font-size: 18px;
+  }
+  
+  .employee-list-item .employee-info p span {
+    font-weight: normal;
+  }
+  
+  .employee-list-item .delete-button {
+    background-color: #ff4d4f;
+    color: #fff;
+    padding: 6px 12px;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+  }

@@ -12,8 +12,10 @@ export default function SillaForm({ idPelicula }) {
 
 
 
+
     //Constantes y utils
     const urlBase = 'https://cinepachoapi.azurewebsites.net/';
+
 
     const [loading, setLoading] = useState(true);
     const [loading2, setLoading2] = useState(true);

@@ -9,6 +9,7 @@ import { Navigate } from "react-router-dom";
 export default function LoginForm() {
 
 
+
   const { register, handleSubmit } = useForm(); //State del form
   const [credenciales1, setCredenciales1] = useState([]);
   const { setInfoCliente, setTokenCliente, setIsLog, isLog, setAuth, infoCliente } = useContext(CineContext);
