@@ -7,14 +7,15 @@ const CanvasJSChart = CanvasJSReact.CanvasJSChart;
 export default function ReportesAdmin() {
   const urlBase = 'https://cinepachoapi.azurewebsites.net/';
   const [movieRatingData, setMovieRatingData] = useState([]);
-  const [jsonData, setJsonData] = useState(null);
   const [salesData, setSalesData] = useState(null);
   const [snacksData, setSnacksData] = useState(null);
+  const [moviesData, setMoviesData] = useState(null);
 
   useEffect(() => {
     GET_peliculasMasVistas();
     GET_snacksMasVendidos();
     GET_valoracionPeliculas();
+    GET_ventasCine();
   },[])
 
   const GET_peliculasMasVistas = async () => {
@@ -55,7 +56,6 @@ export default function ReportesAdmin() {
         method: 'GET'
     })
     const dataGET = await response.json();
-    console.log(dataGET);
     
     const dataJSON = JSON.stringify(dataGET, null, 2);
     const parsedData = JSON.parse(dataJSON);
@@ -78,24 +78,22 @@ export default function ReportesAdmin() {
       buena: arr[3],
       excelente: arr[4]
     })))
-
-    // console.log(movieRatingData);
-
-    // setMovieRatingData(movieRatingDataa);
   }
-
-
-  useEffect(() => {
-    console.log(movieRatingData);
-  }, [movieRatingData])
-  
 
   const GET_ventasCine = async () => {
     const response = await fetch(`${urlBase}ventasCine`, {
         method: 'GET'
     })
-    const data = await response.json();
-    return data;
+    const dataGET = await response.json();
+    const dataJSON = JSON.stringify(dataGET, null, 2);
+    const parsedData = JSON.parse(dataJSON);
+
+    const moviesData = parsedData.reporteUno.map(item => ({
+      label: item.nombremultiplex,
+      y: item["count(c.compra_id)"]
+    }))
+
+    setMoviesData(moviesData);
   }
 
   const dividirEnPartes = (numero) => {
@@ -112,32 +110,6 @@ export default function ReportesAdmin() {
   
     return partes;
   }
-
-  const handleDisplayJson = async () => {
-    try {
-      const data = await GET_ventasCine();
-      setJsonData(data);
-    } catch (error) {
-      console.error('Error:', error);
-      return null;
-    }
-  };
-
-  // const movieRatingData = [
-  //   { label: 'Los Vengadores', pesima: 1, mala: 1, regular: 1, buena: 0.7, excelente: 0 },
-  //   { label: 'Joker', pesima: 1, mala: 1, regular: 1, buena: 1, excelente: 0.4 },
-  //   { label: 'Toy Story 4', pesima: 1, mala: 1, regular: 1, buena: 0.4, excelente: 0 },
-  //   { label: 'Alan Wake', pesima: 1, mala: 0.5, regular: 0, buena: 0, excelente: 0 }
-  // ];
-
-  const moviesData = [
-    { label: 'Multiplex Titán', y: 20 },
-    { label: 'Multiplex Unicentro', y: 30 },
-    { label: 'Multiplex Plaza Central', y: 70 },
-    { label: 'Multiplex Gran Estación', y: 35 },
-    { label: 'Multiplex Eembajador (centro)', y: 22 },
-    { label: 'Las Américas (centro)', y: 15 }
-  ];
 
   const optionsMovies = {
     animationEnabled: true,
@@ -244,12 +216,6 @@ export default function ReportesAdmin() {
           </div>
           <div style={{ height: '400px', marginTop: '2rem' }}>
             <CanvasJSChart options={optionsMovieRating} />
-          </div>
-          <div>
-              <button onClick={handleDisplayJson}>Desplegar JSON</button>
-            {jsonData && (
-              <pre>{JSON.stringify(jsonData, null, 2)}</pre>
-            )}
           </div>
         </div>
       </div>

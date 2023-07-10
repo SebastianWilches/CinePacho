@@ -59,7 +59,3 @@ export default function AppRouter() {
     </>
   );
 }
-
-/*
-<Route path='admin' element={<AdminPage/>} />
-*/
