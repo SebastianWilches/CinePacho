@@ -6,10 +6,7 @@ import ListaSnacksEmpleado from "../containers/ListaSnacksEmpleado";
 import { Navigate } from "react-router-dom";
 
 const CrearCompraEmpleado = ({ accion }) => {
-  const { infoCliente } = useContext(CineContext);
-
-  let token =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRvIjoiamVhc3NvbnN1YXJlekBvdXRsb29rLmVzIiwiaWF0IjoxNjg4ODMxODMwLCJleHAiOjE3MTk5MzU4MzB9.jpFCpAwQ4knD72IsrcbVLdqy6vv1seZtoSuGft0ZleM";
+  const { infoCliente, tokenCliente } = useContext(CineContext);
 
   const [datosCompra, setDatosCompra] = useState({
     idMultiplex: infoCliente.idMultiplex, //ACA IRA EL MULTIPLEX QUE TIENE ASISNADO EL EMPLEADO
@@ -44,7 +41,7 @@ const CrearCompraEmpleado = ({ accion }) => {
     const axiosInstance = axios.create({
       baseURL: crearCompraEmpleadoURL, // Reemplaza con la URL base de tu API
       headers: {
-        "x-access-token": token,
+        "x-access-token": tokenCliente,
       },
     });
 
@@ -182,7 +179,7 @@ const CrearCompraEmpleado = ({ accion }) => {
       let idSala = arr[1];
       let listaSillasFuncionURL =
         "http://localhost:3001/listarSillasDisponiblesSalaMultiplex";
-      // console.log(date, idSala);
+      console.log(date, idSala);
       axios
         .post(listaSillasFuncionURL, {
           idSala,
@@ -271,13 +268,13 @@ const CrearCompraEmpleado = ({ accion }) => {
     axios
       .post(obtenerLinkPagoURL, {
         idMultiplex: datosCompra.idMultiplex,
-        arregloCompras: [datosCompra.idCompra]
+        arregloCompras: [datosCompra.idCompra],
       })
       .then((response) => {
         // Manejar la respuesta del servidor
         console.log(response.data);
         // setListaSillasFuncion(response.data.listaSillasDisponibles);
-        window.open(response.data.urlPago, '_blank')
+        window.open(response.data.urlPago, "_blank");
       })
       .catch((error) => {
         // Manejar errores
@@ -316,15 +313,25 @@ const CrearCompraEmpleado = ({ accion }) => {
           <select name="funcion" required onChange={handleChangeCompra}>
             <option value=""></option>
             {funcionesHorarios.map((pelicula, index) => {
+              let date = new Date(pelicula.horario);
+              const year = date.getFullYear();
+              const month = String(date.getMonth() + 1).padStart(2, "0");
+              const day = String(date.getDate()).padStart(2, "0");
+              const hours = String(date.getHours()).padStart(2, "0");
+              const minutes = String(date.getMinutes()).padStart(2, "0");
+              const seconds = String(date.getSeconds()).padStart(2, "0");
+
+              const formattedDate = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+
+              console.log(pelicula.horario);
               return (
                 <option
                   key={index}
-                  value={pelicula.horario.replace("T", " ").replace("Z", "").slice(0, -4)
-                    .toString()
+                  value={formattedDate
                     .concat(" | ")
                     .concat(pelicula.Sala_sala_id.toString())}
                 >
-                  {pelicula.horario.replace("T", " ").replace("Z", "").slice(0, -4)}
+                  {formattedDate}
                 </option>
               );
             })}
@@ -364,7 +371,7 @@ const CrearCompraEmpleado = ({ accion }) => {
           >
             Pagar Compra
           </span>
-          
+
           <span
             className="button-submit empleado-btn-form btn-compra-empleado-cancelar"
             onClick={handleCancelarCompra}

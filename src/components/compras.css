@@ -9,6 +9,8 @@
 
 .compras-list{
     padding: 60px;
+    display: flex;
+    gap: 16px;
 }
 
 .compra-realizada{
@@ -20,6 +22,7 @@
     align-items: start;
     justify-content: center;
     gap: 16px;
+    border-radius: 15px;
 }
 
 .compra-realizada>p{

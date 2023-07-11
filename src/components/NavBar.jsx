@@ -16,12 +16,16 @@ export default function NavBar() {
     setIsLog,
     setInfoCliente,
     setTokenCliente,
+    setSelectedSnacks,
+    setListaCompraID
   } = useContext(CineContext);
 
   const logout = () => {
     setIsLog(false);
     setInfoCliente([]);
     setTokenCliente([]);
+    setSelectedSnacks([]);
+    setListaCompraID([]);
   };
   return (
     <>

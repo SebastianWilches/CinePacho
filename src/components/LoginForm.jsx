@@ -7,14 +7,19 @@ import "./LoginForm.css";
 import { Navigate } from "react-router-dom";
 
 export default function LoginForm() {
-
-
-
   const { register, handleSubmit } = useForm(); //State del form
   const [credenciales1, setCredenciales1] = useState([]);
-  const { setInfoCliente, setTokenCliente, setIsLog, isLog, setAuth, infoCliente } = useContext(CineContext);
-  const urlBase = 'http://localhost:3001/';
-
+  const {
+    setInfoCliente,
+    setTokenCliente,
+    setIsLog,
+    isLog,
+    setAuth,
+    infoCliente,
+    setListaCompraID,
+    setSelectedSnacks,
+  } = useContext(CineContext);
+  const urlBase = "http://localhost:3001/";
 
   const POST_validarCredenciales = async (credenciales) => {
     const response = await fetch(`${urlBase}validarCredencialesSesion`, {
@@ -46,20 +51,20 @@ export default function LoginForm() {
       });
     }
 
-    if (data.mensaje == 'Se ha iniciado sesion correctamente') {
+    if (data.mensaje == "Se ha iniciado sesion correctamente") {
       setInfoCliente(data.usuario);
       setTokenCliente(data.token);
       setIsLog(true);
-      setAuth(data.auth)
+      setAuth(data.auth);
+      setListaCompraID([]);
+      setSelectedSnacks([]);
       console.log(data.usuario);
       Swal.fire({
         title: "¡Usuario logeado!",
         icon: "success",
       });
     }
-
-  }
-
+  };
 
   const validacionCodigo = async (credenciales) => {
     Swal.fire({
@@ -118,17 +123,15 @@ export default function LoginForm() {
 
         <input className="button-submit btn-sub-login" type="submit" />
       </form>
-      {
-        infoCliente && infoCliente.rol && infoCliente.rol === 4 && <Navigate to='/' />
-      }
-      {
-        infoCliente && infoCliente.nombrerol && infoCliente.nombrerol === 'admin' && <Navigate to='/sesionEmpleado' />
-      }
-      {
-        infoCliente && infoCliente.nombrerol && infoCliente.nombrerol === 'super' && <Navigate to='/admin' />
-      }
-       
+      {infoCliente && infoCliente.rol && infoCliente.rol === 4 && (
+        <Navigate to="/" />
+      )}
+      {infoCliente &&
+        infoCliente.nombrerol &&
+        infoCliente.nombrerol === "admin" && <Navigate to="/sesionEmpleado" />}
+      {infoCliente &&
+        infoCliente.nombrerol &&
+        infoCliente.nombrerol === "super" && <Navigate to="/admin" />}
     </>
   );
-
-};
+}

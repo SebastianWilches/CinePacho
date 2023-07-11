@@ -68,6 +68,8 @@ export default function ShoppingCart() {
     const data = await response.json();
     console.log(data);
     if (data.urlPago) {
+      setSelectedSnacks([])
+      setListaCompraID([])
       window.open(data.urlPago, '_blank')
     }
   };

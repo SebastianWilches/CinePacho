@@ -99,7 +99,7 @@ const Compras = () => {
               </p>
               <div>
                 <label>Calificar Pelicula: </label>
-                <select onChange={handlePeli} disabled={disableSelect}>
+                <select onChange={handlePeli}>
                   <option value=""></option>
                   <option value="1">1</option>
                   <option value="2">2</option>
@@ -110,7 +110,7 @@ const Compras = () => {
               </div>
               <div>
                 <label>Calificar Multiplex: </label>
-                <select onChange={handleMulti} disabled={disableSelect}>
+                <select onChange={handleMulti}>
                   <option value=""></option>
                   <option value="1">1</option>
                   <option value="2">2</option>
@@ -122,7 +122,6 @@ const Compras = () => {
               <button
                 onClick={() => enviarDatos(c.idPelicula, c.idMultiplex)}
                 className="button-submit btn-submit-producto-usuario"
-                disabled={disableSelect}
               >
                 Enviar Calificaciones
               </button>
