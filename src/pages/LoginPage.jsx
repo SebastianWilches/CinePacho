@@ -11,8 +11,7 @@ export const LoginPage = () => {
     <div className='div-contenedor-login'>
       <section className='container-loginPage'>
         <aside className='header-loginPage'>
-          <div alt="Imagen perfil login" className='imgLogin' />
-          {/* <img src={perfil} alt="Imagen perfil login" className='imgLogin' /> */}
+          <img src='https://cinepachoapi.azurewebsites.net/uploads/loginfoto.jpeg' alt="Imagen perfil login" className='imgLogin' />
         </aside>
         <article className='body-loginPage'>
           <p className='titleLoginForm'>ÚNETE A CINEPACHO</p>

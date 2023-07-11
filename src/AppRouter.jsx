@@ -13,9 +13,10 @@ import CrearConsumible from "./components/EmpleadoComponents/containers/CrearCon
 import { CineContext } from "./context/CineContext";
 import RutasProtegidaAdmin from "./security/RutasProtegidasAdmin";
 import { AdminPage } from "./pages/AdminPage";
+import Compras from "./components/compras";
 
 export default function AppRouter() {
-  const { infoCliente, tokenCliente, auth } = useContext(CineContext);
+  const { infoCliente, tokenCliente, auth, isLog } = useContext(CineContext);
 
   // {/* <Link to="/sesionEmpleado">Ir a sesion empleado</Link> */}
   return (
@@ -34,6 +35,18 @@ export default function AppRouter() {
           <Route
             element={
               <RutasProtegidaAdmin
+                autenticado={isLog && tokenCliente && infoCliente.rol === 4}
+              />
+            }
+          >
+            <Route path="/" element={<NavBar />}>
+              <Route path="compras" element={<Compras />} />
+            </Route>
+          </Route>
+
+          <Route
+            element={
+              <RutasProtegidaAdmin
                 autenticado={
                   auth && tokenCliente && infoCliente.nombrerol === "admin"
                 }
@@ -42,7 +55,9 @@ export default function AppRouter() {
           >
             <Route path="/sesionEmpleado" element={<CrearConsumible />} />
           </Route>
-            {console.log(auth && tokenCliente && infoCliente.nombrerol === "super")}
+          {console.log(
+            auth && tokenCliente && infoCliente.nombrerol === "super"
+          )}
           <Route
             element={
               <RutasProtegidaAdmin

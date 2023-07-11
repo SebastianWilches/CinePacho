@@ -42,6 +42,7 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(2, 1fr);
+    padding: 16px;
 }
 
 .CardTitle {
@@ -72,6 +73,7 @@
     text-align: right;
     padding: 1rem 1rem 0 0;
     color: var(--white);
+    font-size: 35px;
 }
 
 .snackBuy{
@@ -80,5 +82,13 @@
 }
 
 .snackBuy > form > input{
+    width: 100%;
+}
+
+.input-snack-usuarionormal{
+    margin: 16px 0;
+}
+
+.btn-submit-producto-usuario{
     width: 100%;
 }

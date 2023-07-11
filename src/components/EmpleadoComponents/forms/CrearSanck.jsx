@@ -29,7 +29,7 @@ const CrearSanck = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    let CrearSanckURL = 'https://cinepachoapi.azurewebsites.net/crearSanck';
+    let CrearSanckURL = 'http://localhost:3001/crearSanck';
     const formData = new FormData();
     formData.append("idMultiplex", datosSnack.idMultiplex);
     formData.append("nombreSnack", datosSnack.nombreSnack);

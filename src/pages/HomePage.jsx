@@ -14,7 +14,7 @@ import star from "../img/Star.png";
 export const HomePage = () => {
   const { setListaMultiplex, listaMultiplex, setSelectedMultiplex_ID } =
     useContext(CineContext);
-  const urlBase = "https://cinepachoapi.azurewebsites.net/";
+  const urlBase = "http://localhost:3001/";
   const { register, handleSubmit } = useForm(); //State del form
   const [open, setOpen] = useState(false); //Modal
   const [cartelera, setCartelera] = useState([]);
@@ -34,7 +34,7 @@ export const HomePage = () => {
   };
 
   const GET_Cartelera = async () => {
-    const response = await fetch(`${urlBase}listaPeliculasCartelera`);
+    const response = await fetch(`${urlBase}listaPeliculas`);
     const data = await response.json();
     console.log(data);
     setCartelera(data.listaPeliculas);
@@ -51,7 +51,6 @@ export const HomePage = () => {
           {cartelera?.map((pelicula, index) => {
             return (
               <article className="container--FeaturedMovie" key={index}>
-                
                 <img
                   src={pelicula.direccionFoto}
                   alt="Poster pelicula destacada"
@@ -62,9 +61,9 @@ export const HomePage = () => {
                   <p>{pelicula.descripcion}</p>
                   <div className="container--star">
                     <AiFillStar className="imgStar" />
-                  <p>{pelicula.puntajePromedio}</p>
+                    <p>{pelicula.puntajePromedio}</p>
                     <AiFillStar className="imgStar" />
-                  
+
                     {/* <AiFillStar className="imgStar" />
                     <AiFillStar className="imgStar" />
                     <AiFillStar className="imgStar" /> */}
@@ -98,7 +97,8 @@ export const HomePage = () => {
                 setOpen(false);
               })}
             >
-              <select {...register("selectedMultiplex_ID", { required: true })}>
+              <select {...register("selectedMultiplex_ID", { required: true })} className="input-select-homepage-multiplex">
+                <option value=""></option>
                 {listaMultiplex.map((multi, index) => {
                   return (
                     <option value={multi.multiplex_id} key={index}>

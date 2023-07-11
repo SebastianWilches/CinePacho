@@ -2,7 +2,6 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import RegisterForm from '../components/RegisterForm'
 
-import perfil from '../img/Perfil.png'
 import './RegisterPage.css'
 
 export const RegisterPage = () => {
@@ -10,10 +9,10 @@ export const RegisterPage = () => {
     <>
     <div className="div-contenedor-login">
       <section className='container-loginPage'>
-        <aside className='header-loginPage'>
-          {/* <img src={perfil} alt="Imagen perfil login" className='imgLogin' /> */}
-          <div alt="Imagen perfil login" className='imgRegister' />
-        </aside>
+        {/* <aside className='header-regitroPage'> */}
+          <img src='https://cinepachoapi.azurewebsites.net/uploads/loginfoto.jpeg' alt="Imagen perfil login" className='imgRegistro-usuario' />
+          {/* <div alt="Imagen rfil login" className='imgRegister' /> */}
+        {/* </aside> */}
         <article className='body-loginPage'>
           <p className='titleLoginForm'>ÚNETE A CINEPACHO</p>
           <RegisterForm />

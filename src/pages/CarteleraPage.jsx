@@ -7,7 +7,7 @@ import './CarteleraPage.css'
 
 export const CarteleraPage = () => {
 
-  const urlBase = 'https://cinepachoapi.azurewebsites.net/';
+  const urlBase = 'http://localhost:3001/';
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -17,7 +17,7 @@ export const CarteleraPage = () => {
 
 
   const GET_Movies = async () => {
-    const response = await fetch(`${urlBase}listaPeliculas`);
+    const response = await fetch(`${urlBase}listaPeliculasCartelera`);
     const { listaPeliculas } = await response.json();
 
     setMovies(listaPeliculas);

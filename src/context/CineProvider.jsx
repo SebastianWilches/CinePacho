@@ -13,6 +13,7 @@ export const CineProvider = ({ children }) => {
     const [isLog, setIsLog] = useState(false);
     const [selectedSnacks, setSelectedSnacks] = useState([]);
     const [auth, setAuth] = useState(false);
+    const [idCompraUsuarioCliente, setIdCompraUsuarioCliente] = useState(null);
 
 
 
@@ -37,6 +38,8 @@ export const CineProvider = ({ children }) => {
                 setSelectedSnacks,
                 setAuth,
                 auth,
+                idCompraUsuarioCliente,
+                setIdCompraUsuarioCliente
             }
         }>
             {children}

@@ -8,7 +8,7 @@ import { CineContext } from '../context/CineContext'
 
 export const SnacksPage = () => {
 
-  const urlBase = 'https://cinepachoapi.azurewebsites.net/';
+  const urlBase = 'http://localhost:3001/';
   const [snacks, setSnacks] = useState([]);
   const [loading, setLoading] = useState(true);
   const { selectedMultiplex_ID } = useContext(CineContext);
