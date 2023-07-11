@@ -1,0 +1,43 @@
+.div-contenedor-compras-realizadas{
+    min-height: 93vh;
+    background-color: var(--background);
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: space-between;
+}
+
+.compras-list{
+    padding: 60px;
+}
+
+.compra-realizada{
+    padding: 20px;
+    outline: 1px solid rebeccapurple;
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+    gap: 16px;
+}
+
+.compra-realizada>p{
+    display: block;
+    width: fit-content;
+}
+
+.compra-realizada>p>span, .compra-realizada>div>label{
+    font-weight: bold;
+}
+
+.compra-realizada>div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.compra-realizada>div>select{
+    padding: 16px;
+    border-radius: 5px;
+}

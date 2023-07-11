@@ -13,7 +13,7 @@ export default function LoginForm() {
   const { register, handleSubmit } = useForm(); //State del form
   const [credenciales1, setCredenciales1] = useState([]);
   const { setInfoCliente, setTokenCliente, setIsLog, isLog, setAuth, infoCliente } = useContext(CineContext);
-  const urlBase = 'https://cinepachoapi.azurewebsites.net/';
+  const urlBase = 'http://localhost:3001/';
 
 
   const POST_validarCredenciales = async (credenciales) => {
@@ -118,6 +118,9 @@ export default function LoginForm() {
 
         <input className="button-submit btn-sub-login" type="submit" />
       </form>
+      {
+        infoCliente && infoCliente.rol && infoCliente.rol === 4 && <Navigate to='/' />
+      }
       {
         infoCliente && infoCliente.nombrerol && infoCliente.nombrerol === 'admin' && <Navigate to='/sesionEmpleado' />
       }

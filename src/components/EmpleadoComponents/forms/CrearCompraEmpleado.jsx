@@ -40,7 +40,7 @@ const CrearCompraEmpleado = ({ accion }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(datosCompra);
-    let crearCompraEmpleadoURL = "https://cinepachoapi.azurewebsites.net/crearCompraEmpleado";
+    let crearCompraEmpleadoURL = "http://localhost:3001/crearCompraEmpleado";
     const axiosInstance = axios.create({
       baseURL: crearCompraEmpleadoURL, // Reemplaza con la URL base de tu API
       headers: {
@@ -80,7 +80,7 @@ const CrearCompraEmpleado = ({ accion }) => {
       sillasSeleccionadas: datosCompra.sillasSeleccionadas,
       idMultiplex: parseInt(datosCompra.idMultiplex),
     };
-    let enviarSillasCompraURL = "https://cinepachoapi.azurewebsites.net/seleccionarSillasCompra";
+    let enviarSillasCompraURL = "http://localhost:3001/seleccionarSillasCompra";
     axios
       .post(enviarSillasCompraURL, {
         idCompra,
@@ -108,7 +108,7 @@ const CrearCompraEmpleado = ({ accion }) => {
     const idMultiplex = parseInt(datosCompra.idMultiplex);
     const arrSnacks = datosCompra.snackSeleccionados;
     console.log(idMultiplex, arrSnacks, idCompra);
-    let agregarSnackCompraURL = "https://cinepachoapi.azurewebsites.net/agregarSnackCompra";
+    let agregarSnackCompraURL = "http://localhost:3001/agregarSnackCompra";
     for (let i = 0; i < arrSnacks.length; i++) {
       await axios
         .post(agregarSnackCompraURL, {
@@ -132,8 +132,8 @@ const CrearCompraEmpleado = ({ accion }) => {
   };
 
   useEffect(() => {
-    let listaCarteleraURL = "https://cinepachoapi.azurewebsites.net/listaPeliculasCartelera";
-    let listaSnackMultiplexURL = `https://cinepachoapi.azurewebsites.net/listaSnackMultiplex/${datosCompra.idMultiplex}`;
+    let listaCarteleraURL = "http://localhost:3001/listaPeliculasCartelera";
+    let listaSnackMultiplexURL = `http://localhost:3001/listaSnackMultiplex/${datosCompra.idMultiplex}`;
     axios
       .get(listaCarteleraURL)
       .then((response) => {
@@ -160,7 +160,7 @@ const CrearCompraEmpleado = ({ accion }) => {
 
   useEffect(() => {
     if (datosCompra.idPelicula !== null) {
-      let listaCartelera = `https://cinepachoapi.azurewebsites.net/pelicula/${datosCompra.idPelicula}`;
+      let listaCartelera = `http://localhost:3001/pelicula/${datosCompra.idPelicula}`;
       axios
         .get(listaCartelera)
         .then((response) => {
@@ -181,7 +181,7 @@ const CrearCompraEmpleado = ({ accion }) => {
       let date = arr[0];
       let idSala = arr[1];
       let listaSillasFuncionURL =
-        "https://cinepachoapi.azurewebsites.net/listarSillasDisponiblesSalaMultiplex";
+        "http://localhost:3001/listarSillasDisponiblesSalaMultiplex";
       // console.log(date, idSala);
       axios
         .post(listaSillasFuncionURL, {
@@ -249,7 +249,7 @@ const CrearCompraEmpleado = ({ accion }) => {
 
   const handleCancelarCompra = () => {
     console.log(datosCompra.idCompra);
-    let cancelaCompraURL = "https://cinepachoapi.azurewebsites.net/cancelarCompra";
+    let cancelaCompraURL = "http://localhost:3001/cancelarCompra";
     axios
       .post(cancelaCompraURL, {
         idCompra: datosCompra.idCompra,
@@ -267,7 +267,7 @@ const CrearCompraEmpleado = ({ accion }) => {
   };
 
   const handlePagarCompra = () => {
-    let obtenerLinkPagoURL = "https://cinepachoapi.azurewebsites.net/realizarPago";
+    let obtenerLinkPagoURL = "http://localhost:3001/realizarPago";
     axios
       .post(obtenerLinkPagoURL, {
         idMultiplex: datosCompra.idMultiplex,

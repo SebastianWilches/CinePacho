@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useState } from "react";
 
 const CrearPeliculas = () => {
-  let crearPeliculaURL = "https://cinepachoapi.azurewebsites.net/crearPelicula";
+  let crearPeliculaURL = "http://localhost:3001/crearPelicula";
   const [datosPelicula, setDatosPelicula] = useState({
     titulo: null,
     genero: null,

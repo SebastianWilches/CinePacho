@@ -5,7 +5,7 @@ import PDFGenerate from './PDFGenerate';
 const CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 export default function ReportesAdmin() {
-  const urlBase = 'https://cinepachoapi.azurewebsites.net/';
+  const urlBase = 'http://localhost:3001/';
   const [movieRatingData, setMovieRatingData] = useState([]);
   const [jsonData, setJsonData] = useState(null);
   const [salesData, setSalesData] = useState(null);
