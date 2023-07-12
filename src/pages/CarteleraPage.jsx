@@ -7,7 +7,7 @@ import './CarteleraPage.css'
 
 export const CarteleraPage = () => {
 
-  const urlBase = 'http://localhost:3001/';
+  const urlBase = 'https://cinepachoapi.azurewebsites.net/';
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(true);
 

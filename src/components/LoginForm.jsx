@@ -19,7 +19,7 @@ export default function LoginForm() {
     setListaCompraID,
     setSelectedSnacks,
   } = useContext(CineContext);
-  const urlBase = "http://localhost:3001/";
+  const urlBase = "https://cinepachoapi.azurewebsites.net/";
 
   const POST_validarCredenciales = async (credenciales) => {
     const response = await fetch(`${urlBase}validarCredencialesSesion`, {

@@ -7,7 +7,7 @@ import axios from "axios";
 
 export default function SnackItem({ infoSnack }) {
   const { register, handleSubmit } = useForm(); //State del form
-  const urlBase = "http://localhost:3001/";
+  const urlBase = "https://cinepachoapi.azurewebsites.net/";
   //Contexto
   const {
     isLog,

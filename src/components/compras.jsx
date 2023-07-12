@@ -14,7 +14,7 @@ const Compras = () => {
   const [disableSelect, setDisableSelect] = useState(false);
 
   useEffect(() => {
-    const urlBase = "http://localhost:3001/";
+    const urlBase = "https://cinepachoapi.azurewebsites.net/";
     axios
       .get(`${urlBase}listaComprasRealizadas/${infoCliente.cliente_id}`)
       .then((response) => {
@@ -49,7 +49,7 @@ const Compras = () => {
       puntaje: calificacionPelicula,
       idMultiplex,
     };
-    const urlBase = "http://localhost:3001/";
+    const urlBase = "https://cinepachoapi.azurewebsites.net/";
     axios
       .post(`${urlBase}calificaMultiplexCliente`, objCalificacionMultiplex)
       .then((response) => {

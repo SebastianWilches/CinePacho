@@ -12,7 +12,7 @@ export default function CreateEmpleado() {
 
   const handleAddEmployee = (empleadoData) => {
     console.log(empleadoData);
-    const  urlBase = "http://localhost:3001/"
+    const  urlBase = "https://cinepachoapi.azurewebsites.net/"
     axios
         .post(`${urlBase}registrarSesionEmpleado`, empleadoData)
         .then((response) => {
@@ -45,7 +45,7 @@ export default function CreateEmpleado() {
   };
 
   useEffect(() => {
-    const urlBase = "http://localhost:3001/";
+    const urlBase = "https://cinepachoapi.azurewebsites.net/";
     // listaRoles
     // listaCargos
     // listaPuntosAgiles/2
@@ -87,7 +87,7 @@ export default function CreateEmpleado() {
 
   const handleChangeMultiplex = (e) => {
     console.log(e.target.value);
-    const urlBase = "http://localhost:3001/";
+    const urlBase = "https://cinepachoapi.azurewebsites.net/";
     // listaPuntosAgiles/2
     // console.log(register);
     if (e.target.value !== "") {

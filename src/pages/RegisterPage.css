@@ -28,7 +28,7 @@
 .imgRegister{
     width: 20rem;
     /* background-image: url('../../public/Perfil.png'); */
-    background-image: url('http://localhost:3001/uploads/loginfoto.jpeg');
+    background-image: url('https://cinepachoapi.azurewebsites.net/uploads/loginfoto.jpeg');
 
     background-image: no-repeat;
     background-image: fixed;

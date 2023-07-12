@@ -11,7 +11,7 @@ export default function RegisterForm() {
 
   const [redirectLogin, setRedirectLogin] = useState(false)
   const { register, handleSubmit } = useForm();
-  const urlBase = "http://localhost:3001/";
+  const urlBase = "https://cinepachoapi.azurewebsites.net/";
 
   const POST_RegistrarSesionCliente = async (user) => {
     console.log(user);

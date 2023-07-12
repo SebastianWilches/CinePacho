@@ -19,7 +19,7 @@ export default function ShoppingCart() {
     idCompraUsuarioCliente,
     setIdCompraUsuarioCliente
   } = useContext(CineContext);
-  const urlBase = "http://localhost:3001/";
+  const urlBase = "https://cinepachoapi.azurewebsites.net/";
 
   console.log(selectedSnacks);
 

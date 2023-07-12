@@ -14,7 +14,7 @@ import star from "../img/Star.png";
 export const HomePage = () => {
   const { setListaMultiplex, listaMultiplex, setSelectedMultiplex_ID } =
     useContext(CineContext);
-  const urlBase = "http://localhost:3001/";
+  const urlBase = "https://cinepachoapi.azurewebsites.net/";
   const { register, handleSubmit } = useForm(); //State del form
   const [open, setOpen] = useState(false); //Modal
   const [cartelera, setCartelera] = useState([]);
